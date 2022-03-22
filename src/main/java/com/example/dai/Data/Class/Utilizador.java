@@ -19,6 +19,12 @@ public class Utilizador {
         this.email = email;
     }
 
+    public Utilizador(String nomeUtilizador, String password, String email) {
+        this.nomeUtilizador = nomeUtilizador;
+        this.password = password;
+        this.email = email;
+    }
+
     public Utilizador(String nomeUtilizador, String nomeCompleto, String password, LocalDate dataNascimento, String email, String numeroTelemovel) {
         this.nomeUtilizador = nomeUtilizador;
         this.nomeCompleto = nomeCompleto;

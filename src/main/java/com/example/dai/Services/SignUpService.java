@@ -1,10 +1,15 @@
 package com.example.dai.Services;
 
+import com.example.dai.Data.Class.Utilizador;
 import com.example.dai.Data.SignUpForm;
+import com.example.dai.Repositories.UsersRepositorie;
+import org.apache.catalina.User;
 import org.springframework.stereotype.Service;
 
 @Service
 public class SignUpService {
+
+    static UsersRepositorie usersRepositorie = new UsersRepositorie();
 
     public static String signUp(SignUpForm signUpForm){
         String username = signUpForm.getUsername();
@@ -24,6 +29,10 @@ public class SignUpService {
             return "Email não foi providenciado";
         }
 
+        Utilizador utilizador = new Utilizador(username, username, email);
+
+        //Adicionar ao repositório
+        usersRepositorie.adicionarUtilizador(utilizador);
         return "signup form bem sucedida";
     }
 }

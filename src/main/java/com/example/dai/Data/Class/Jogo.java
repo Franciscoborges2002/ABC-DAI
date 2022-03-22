@@ -1,16 +1,19 @@
 package com.example.dai.Data.Class;
 
+import com.example.dai.Data.Competition;
+
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class Jogo {
     private int numeroJogo;
-    private String competicao;
+    private Competition competicao;
     private String epoca;
     private LocalDate dataJogo;
     private String horasJogo;
-    private String resultado;
-    private ArrayList<Equipa> equipas;
-    //...//
+    private int golosABC;
+    private int golosEquipaVisitante;
+    private String estadio;
+    private Equipa ABC;
+    private Equipa equipaVisitante;
 
 }

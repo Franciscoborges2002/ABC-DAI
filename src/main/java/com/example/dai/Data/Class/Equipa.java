@@ -1,6 +1,7 @@
 package com.example.dai.Data.Class;
 
-import java.util.ArrayList;
+import com.example.dai.Data.Enums.Escalao;
+import com.example.dai.Data.Enums.Genero;
 
 public class Equipa {
     private String nome;
@@ -8,5 +9,6 @@ public class Equipa {
     private String email;
     private String website;
     private String recinto;
-    private ArrayList<Escalao> escaloes;
+    private Escalao escalao;
+    private Genero genero;
 }

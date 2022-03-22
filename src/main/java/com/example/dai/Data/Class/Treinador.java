@@ -1,4 +1,4 @@
 package com.example.dai.Data.Class;
 
-public class Treinador {
+public class Treinador extends Utilizador {
 }
