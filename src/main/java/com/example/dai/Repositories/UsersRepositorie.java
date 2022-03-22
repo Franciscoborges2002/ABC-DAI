@@ -50,11 +50,12 @@ public class UsersRepositorie {
         return diretores;
     }
 
-    public void adicionarUtilizador(Utilizador utilizador){    // adionar um novo utilizador com a verificação se o username está a ser utilizado
+    public String adicionarUtilizador(Utilizador utilizador){    // adionar um novo utilizador com a verificação se o username está a ser utilizado
         if(utilizadores.keySet().contains(utilizador.getNomeUtilizador())){
-            System.out.println("Nome de utilizador já utilizado");
+            return "Nome de utilizador já utilizado";
         }else{
             utilizadores.put(utilizador.getNomeUtilizador(), utilizador);
+            return "Utilizador adicionado";
         }
     }
 

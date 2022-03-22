@@ -2,9 +2,9 @@ package com.example.dai.Services;
 
 import com.example.dai.Data.Competition;
 
-public class CompetitionRegistrationService {
+public class CompetitionService {
 
-    public static String newCompetition(Competition newCompetition){
+    public static String addCompetition(Competition newCompetition){
         String url = newCompetition.getURL();
 
         if(!url.contains("www.")){

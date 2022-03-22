@@ -5,7 +5,7 @@ package com.example.dai.Controllers;
 * */
 
 import com.example.dai.Data.Competition;
-import com.example.dai.Services.CompetitionRegistrationService;
+import com.example.dai.Services.CompetitionService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +17,6 @@ public class CompetitionRegistrationController {
 
     @PostMapping
     public String newCompetition(@RequestBody Competition newCompetition){
-        return CompetitionRegistrationService.newCompetition(newCompetition);
+        return CompetitionService.addCompetition(newCompetition);
     }
 }
