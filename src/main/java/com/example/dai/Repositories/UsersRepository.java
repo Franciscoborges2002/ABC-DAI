@@ -7,7 +7,8 @@ import com.example.dai.Data.Class.Utilizador;
 
 import java.util.HashMap;
 
-public class UsersRepositorie {
+public class UsersRepository {
+    //nomeUtlizador, objeto
     HashMap<String, Utilizador> utilizadores = new HashMap<>();
 
     public HashMap<String, Utilizador> getUtilizadores() {

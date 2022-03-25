@@ -5,7 +5,7 @@ import com.example.dai.Data.Class.Treino;
 import java.time.LocalDate;
 import java.util.HashMap;
 
-public class TrainingRepositorie {
+public class TrainingRepository {
     HashMap<LocalDate, Treino> trains = new HashMap();
 
     public HashMap<LocalDate, Treino> getTrains(){return trains;}

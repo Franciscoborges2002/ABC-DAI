@@ -1,8 +1,7 @@
 package com.example.dai.Services;
 
 import com.example.dai.Data.Class.Utilizador;
-import com.example.dai.Data.LoginForm;
-import com.example.dai.Repositories.UsersRepositorie;
+import com.example.dai.Data.LoginRequest;
 import org.springframework.stereotype.Service;
 
 import static com.example.dai.Services.SignUpService.usersRepositorie;
@@ -11,7 +10,7 @@ import static com.example.dai.Services.SignUpService.usersRepositorie;
 public class LoginService {
 
 
-    public static String login(LoginForm loginForm){
+    public String login(LoginRequest loginForm){
 
         String username = loginForm.getUsername();
         String password = loginForm.getPassword();

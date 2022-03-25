@@ -4,14 +4,15 @@ import com.example.dai.Data.Class.Equipa;
 
 import java.util.HashMap;
 
-public class TeamRepositorie {
-    //Nome, Objeto
-    HashMap<String, Equipa> teams = new HashMap();
+public class TeamRepository {
+    //Nome, Objeto//
 
-    public TeamRepositorie(HashMap<String, Equipa> teams) {
-        this.teams = teams;
+    HashMap<String, Equipa> teams = new HashMap<>();
+
+
+    public TeamRepository() {
+
     }
-
 
     public HashMap<String, Equipa> getTeams(){
         return teams;

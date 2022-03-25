@@ -1,7 +1,9 @@
 package com.example.dai.Services;
 
 import com.example.dai.Data.Competition;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CompetitionService {
 
     public static String addCompetition(Competition newCompetition){

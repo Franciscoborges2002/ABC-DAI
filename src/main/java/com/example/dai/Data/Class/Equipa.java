@@ -3,6 +3,7 @@ package com.example.dai.Data.Class;
 import com.example.dai.Data.Enums.Escalao;
 import com.example.dai.Data.Enums.Genero;
 
+import java.util.HashMap;
 import java.util.Objects;
 
 public class Equipa {
@@ -13,6 +14,8 @@ public class Equipa {
     private String recinto;
     private Escalao escalao;
     private Genero genero;
+    private HashMap<String, Atleta> atletasNaEquipa;//String: nomeUtilizador
+    private HashMap<String, Treinador> treinadoresNaEquipa;//String: nomeUtilizador
 
     public Equipa() {
     }

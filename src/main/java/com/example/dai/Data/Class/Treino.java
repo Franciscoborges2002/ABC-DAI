@@ -3,29 +3,31 @@ package com.example.dai.Data.Class;
 import com.example.dai.Data.Enums.Categoria;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 
 public class Treino {
-    private Categoria categoria;
+    private String nomeTreino;
     private Equipa equipa;
     private LocalDate horario;
     private String localizacao;
+    private HashMap<Integer, Exercicio> exercicios;
 
     public Treino() {
     }
 
-    public Treino(Categoria categoria, Equipa equipa, LocalDate horario, String localizacao) {
-        this.categoria = categoria;
+    public Treino(Equipa equipa, LocalDate horario, String localizacao, HashMap<Integer, Exercicio> exercicios) {
         this.equipa = equipa;
         this.horario = horario;
         this.localizacao = localizacao;
+        this.exercicios = exercicios;
     }
 
-    public Categoria getCategoria() {
-        return categoria;
+    public String getNomeTreino() {
+        return nomeTreino;
     }
 
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
+    public void setNomeTreino(String nomeTreino) {
+        this.nomeTreino = nomeTreino;
     }
 
     public Equipa getEquipa() {
@@ -52,13 +54,22 @@ public class Treino {
         this.localizacao = localizacao;
     }
 
+    public HashMap<Integer, Exercicio> getExercicios() {
+        return exercicios;
+    }
+
+    public void setExercicios(HashMap<Integer, Exercicio> exercicios) {
+        this.exercicios = exercicios;
+    }
+
     @Override
     public String toString() {
         return "Treino{" +
-                "categoria=" + categoria +
+                "nomeTreino='" + nomeTreino + '\'' +
                 ", equipa=" + equipa +
                 ", horario=" + horario +
                 ", localizacao='" + localizacao + '\'' +
+                ", exercicios=" + exercicios +
                 '}';
     }
 }

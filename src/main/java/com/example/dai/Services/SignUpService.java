@@ -2,17 +2,17 @@ package com.example.dai.Services;
 
 import com.example.dai.Data.Class.Utilizador;
 import com.example.dai.Data.SignUpForm;
-import com.example.dai.Repositories.TeamRepositorie;
-import com.example.dai.Repositories.TrainingRepositorie;
-import com.example.dai.Repositories.UsersRepositorie;
+import com.example.dai.Repositories.TrainingRepository;
+import com.example.dai.Repositories.UsersRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class SignUpService {
 
-    static UsersRepositorie usersRepositorie = new UsersRepositorie();
-    static TrainingRepositorie trainingRepositorie = new TrainingRepositorie();
-    static TeamRepositorie teamRepositorie = new TeamRepositorie();
+    static UsersRepository usersRepositorie = new UsersRepository();
+    static TrainingRepository trainingRepositorie = new TrainingRepository();
+    //static TeamRepositorie teamRepositorie = new TeamRepositorie();
+    //static ExerciseRepositorie
 
     public static String signUp(SignUpForm signUpForm){
         String username = signUpForm.getUsername();

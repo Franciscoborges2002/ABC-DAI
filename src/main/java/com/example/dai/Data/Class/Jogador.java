@@ -1,6 +1,4 @@
 package com.example.dai.Data.Class;
 
-public class Escalao {
-
-
+public class Jogador extends Atleta{
 }
