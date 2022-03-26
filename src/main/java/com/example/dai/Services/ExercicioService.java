@@ -3,11 +3,11 @@ package com.example.dai.Services;
 import com.example.dai.Data.Class.Exercicio;
 import org.springframework.stereotype.Service;
 
-import static com.example.dai.Services.UsersService.exerciseRepositorie;
+import static com.example.dai.Services.UtilizadorService.exerciseRepositorie;
 
 
 @Service
-public class ExerciseService {
+public class ExercicioService {
 
     public static String addExercise(Exercicio exercicio){
         exerciseRepositorie.addExercise(exercicio);

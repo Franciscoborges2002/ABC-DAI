@@ -16,7 +16,7 @@ public class DaiApplication {
         SpringApplication.run(DaiApplication.class, args);
     }
 
-    public static String listFolderStructure(String username, String password, String host, int port, String command) throws Exception {
+  /*  public static String listFolderStructure(String username, String password, String host, int port, String command) throws Exception {
         Session session = null;
         ChannelExec channel = null;
         String response = null;
@@ -49,6 +49,6 @@ public class DaiApplication {
             }
         }
         return response;
-    }
+    }*/
 
 }

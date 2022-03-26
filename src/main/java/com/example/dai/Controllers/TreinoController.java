@@ -1,23 +1,23 @@
 package com.example.dai.Controllers;
 
 import com.example.dai.Data.Class.Treino;
-import com.example.dai.Services.TrainService;
+import com.example.dai.Services.TreinoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 //Função para aidionar um novo treino à BD
 @RestController
 @RequestMapping("/api/v1/train")
-public class TrainController {
+public class TreinoController {
 
-    private final TrainService trainService;
+    private final TreinoService trainService;
 
     @Autowired
-    public TrainController(TrainService trainService){this.trainService = trainService;}
+    public TreinoController(TreinoService trainService){this.trainService = trainService;}
 
     @PostMapping
     public String createTrain(@RequestBody Treino treino){
-        return TrainService.addTrain(treino);
+        return TreinoService.addTrain(treino);
     }
 
     @GetMapping

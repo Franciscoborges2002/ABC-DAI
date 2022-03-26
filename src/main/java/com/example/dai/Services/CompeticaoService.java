@@ -1,12 +1,12 @@
 package com.example.dai.Services;
 
-import com.example.dai.Data.Competition;
+import com.example.dai.Data.Class.Competicao;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CompetitionService {
+public class CompeticaoService {
 
-    public static String addCompetition(Competition newCompetition){
+    public static String adicionarCompeticao(Competicao newCompetition){
         String url = newCompetition.getURL();
 
         if(!url.contains("www.")){

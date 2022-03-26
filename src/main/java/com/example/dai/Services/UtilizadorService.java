@@ -2,18 +2,18 @@ package com.example.dai.Services;
 
 import com.example.dai.Data.Class.Utilizador;
 import com.example.dai.Data.SignUpForm;
-import com.example.dai.Repositories.ExerciseRepository;
-import com.example.dai.Repositories.TeamRepository;
-import com.example.dai.Repositories.TrainingRepository;
-import com.example.dai.Repositories.UsersRepository;
+import com.example.dai.Repositories.ExercicioRepository;
+import com.example.dai.Repositories.EquipaRepository;
+import com.example.dai.Repositories.TreinoRepository;
+import com.example.dai.Repositories.UtilizadorRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UsersService {
-    static UsersRepository usersRepositorie = new UsersRepository();
-    static TrainingRepository trainingRepositorie = new TrainingRepository();
-    static ExerciseRepository exerciseRepositorie = new ExerciseRepository();
-    static TeamRepository teamRepositorie = new TeamRepository();
+public class UtilizadorService {
+    static UtilizadorRepository usersRepositorie = new UtilizadorRepository();
+    static TreinoRepository trainingRepositorie = new TreinoRepository();
+    static ExercicioRepository exerciseRepositorie = new ExercicioRepository();
+    static EquipaRepository teamRepositorie = new EquipaRepository();
 
     public String list(){
         return usersRepositorie.getUtilizadores().toString();

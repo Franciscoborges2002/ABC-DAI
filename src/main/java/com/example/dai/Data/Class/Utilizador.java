@@ -14,10 +14,12 @@ public class Utilizador {
     public Utilizador() {
     }
 
-    public Utilizador(String password, String email) {
+    public Utilizador(String nomeUtilizador, String password) {
+        this.nomeUtilizador = nomeUtilizador;
         this.password = password;
-        this.email = email;
     }
+
+
 
     public Utilizador(String nomeUtilizador, String password, String email) {
         this.nomeUtilizador = nomeUtilizador;

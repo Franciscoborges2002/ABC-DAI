@@ -1,7 +1,7 @@
-package com.example.dai.Data;
+package com.example.dai.Data.Class;
 
 //Função para registar uma nova competição, url. o resto vamos buscar ao website da federação;
-public class Competition {
+public class Competicao {
     private String Nome;
 
     public String getURL() {

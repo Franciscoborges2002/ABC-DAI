@@ -3,10 +3,10 @@ package com.example.dai.Services;
 import com.example.dai.Data.Class.Treino;
 import org.springframework.stereotype.Service;
 
-import static com.example.dai.Services.UsersService.trainingRepositorie;
+import static com.example.dai.Services.UtilizadorService.trainingRepositorie;
 
 @Service
-public class TrainService {
+public class TreinoService {
 
     public static String addTrain(Treino treino){
 

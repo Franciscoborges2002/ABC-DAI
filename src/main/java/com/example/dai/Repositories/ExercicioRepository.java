@@ -4,7 +4,7 @@ import com.example.dai.Data.Class.Exercicio;
 
 import java.util.HashMap;
 
-public class ExerciseRepository {
+public class ExercicioRepository {
     HashMap<Integer, Exercicio> exercises = new HashMap();
 
     public HashMap<Integer, Exercicio> getExercises(){return exercises;}

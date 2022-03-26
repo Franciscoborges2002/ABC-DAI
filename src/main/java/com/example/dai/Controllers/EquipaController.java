@@ -1,18 +1,18 @@
 package com.example.dai.Controllers;
 
 import com.example.dai.Data.Class.Equipa;
-import com.example.dai.Services.TeamService;
+import com.example.dai.Services.EquipaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/teams")
-public class TeamController {
+public class EquipaController {
 
-    private final TeamService teamService;
+    private final EquipaService teamService;
 
     @Autowired
-    public TeamController(TeamService teamService) {
+    public EquipaController(EquipaService teamService) {
         this.teamService = teamService;
     }
 

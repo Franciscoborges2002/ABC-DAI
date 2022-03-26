@@ -4,13 +4,13 @@ import com.example.dai.Data.Class.Utilizador;
 import com.example.dai.Data.LoginRequest;
 import org.springframework.stereotype.Service;
 
-import static com.example.dai.Services.SignUpService.usersRepositorie;
+import static com.example.dai.Services.UtilizadorService.usersRepositorie;
 
 @Service
-public class LoginService {
+public class AutenticacaoService {
 
 
-    public String login(LoginRequest loginForm){
+    public String autenticar(LoginRequest loginForm){
 
         String username = loginForm.getUsername();
         String password = loginForm.getPassword();
@@ -32,9 +32,9 @@ public class LoginService {
             if(u.getPassword().equals(password)){
                 return "Login bem sucedido\n";
             }
-            return "Username ou password incorreto\n";
+            return "Username ou password incorreto 1\n";
         }else{
-            return "Username ou password incorreto\n";
+            return "Username ou password incorreto 2\n";
         }
     }
 }

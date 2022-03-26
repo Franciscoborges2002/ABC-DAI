@@ -1,8 +1,7 @@
 package com.example.dai.Controllers;
 
 import com.example.dai.Data.LoginRequest;
-import com.example.dai.Repositories.UsersRepository;
-import com.example.dai.Services.LoginService;
+import com.example.dai.Services.AutenticacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,19 +10,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value="/api/v1/login")
-public class LoginController {
+public class AutenticacaoController {
 
-    private final LoginService loginService;
-
-    UsersRepository usersRepositorie = new UsersRepository();
+    private final AutenticacaoService autenticacaoService;
 
     @Autowired
-    public LoginController(LoginService loginService) {
-        this.loginService = loginService;
+    public AutenticacaoController(AutenticacaoService loginService) {
+        this.autenticacaoService = loginService;
     }
 
     @PostMapping
     public String login(@RequestBody LoginRequest loginRequest) {//DTO -> Data Transfer Object//
-        return loginService.login(loginRequest);
+        return autenticacaoService.autenticar(loginRequest);
     }
 }

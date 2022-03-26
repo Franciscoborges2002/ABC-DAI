@@ -4,23 +4,23 @@ package com.example.dai.Controllers;
 * Função para receber uma nova competições onde o ABC vai participar
 * */
 
-import com.example.dai.Data.Competition;
-import com.example.dai.Services.CompetitionService;
+import com.example.dai.Data.Class.Competicao;
+import com.example.dai.Services.CompeticaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/competition")
-public class CompetitionController {
+public class CompeticaoController {
 
-    private final CompetitionService competitionService;
+    private final CompeticaoService competicaoService;
 
     @Autowired
-    public CompetitionController(CompetitionService competitionService){this.competitionService = competitionService;}
+    public CompeticaoController(CompeticaoService competitionService){this.competicaoService = competitionService;}
 
     @PostMapping
-    public String newCompetition(@RequestBody Competition newCompetition){
-        return CompetitionService.addCompetition(newCompetition);
+    public String newCompetition(@RequestBody Competicao novaCompetition){
+        return competicaoService.adicionarCompeticao(novaCompetition);
     }
 
     @GetMapping

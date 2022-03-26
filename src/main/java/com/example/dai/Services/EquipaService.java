@@ -4,10 +4,10 @@ package com.example.dai.Services;
 import org.springframework.stereotype.Service;
 import com.example.dai.Data.Class.Equipa;
 
-import static com.example.dai.Services.UsersService.teamRepositorie;
+import static com.example.dai.Services.UtilizadorService.teamRepositorie;
 
 @Service
-public class TeamService {
+public class EquipaService {
 
     public static String addTeam(Equipa newTeam){
          teamRepositorie.addTeam(newTeam);
