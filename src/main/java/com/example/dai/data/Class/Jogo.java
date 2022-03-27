@@ -1,4 +1,4 @@
-package com.example.dai.Data.Class;
+package com.example.dai.data.Class;
 
 import java.time.LocalDate;
 import java.util.Objects;

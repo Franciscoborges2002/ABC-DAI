@@ -1,7 +1,7 @@
 package com.example.dai.Controllers;
 
-import com.example.dai.Data.Class.Utilizador;
-import com.example.dai.Data.SignUpForm;
+import com.example.dai.data.Class.Utilizador;
+import com.example.dai.data.SignUpForm;
 import com.example.dai.Services.UtilizadorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

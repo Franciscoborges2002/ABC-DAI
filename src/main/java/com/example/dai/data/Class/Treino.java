@@ -1,6 +1,4 @@
-package com.example.dai.Data.Class;
-
-import com.example.dai.Data.Enums.Categoria;
+package com.example.dai.data.Class;
 
 import java.time.LocalDate;
 import java.util.HashMap;

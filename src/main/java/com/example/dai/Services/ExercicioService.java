@@ -1,6 +1,6 @@
 package com.example.dai.Services;
 
-import com.example.dai.Data.Class.Exercicio;
+import com.example.dai.data.Class.Exercicio;
 import org.springframework.stereotype.Service;
 
 import static com.example.dai.Services.UtilizadorService.exerciseRepositorie;

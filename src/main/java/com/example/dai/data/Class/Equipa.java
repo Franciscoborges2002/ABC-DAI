@@ -1,7 +1,7 @@
-package com.example.dai.Data.Class;
+package com.example.dai.data.Class;
 
-import com.example.dai.Data.Enums.Escalao;
-import com.example.dai.Data.Enums.Genero;
+import com.example.dai.data.Enums.Escalao;
+import com.example.dai.data.Enums.Genero;
 
 import java.util.HashMap;
 import java.util.Objects;

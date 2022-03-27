@@ -1,4 +1,4 @@
-package com.example.dai.Data.Class;
+package com.example.dai.data.Class;
 
 public class GuardaRedes extends Atleta{
         private long golosSofridos;

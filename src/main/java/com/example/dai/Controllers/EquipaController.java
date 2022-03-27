@@ -1,6 +1,6 @@
 package com.example.dai.Controllers;
 
-import com.example.dai.Data.Class.Equipa;
+import com.example.dai.data.Class.Equipa;
 import com.example.dai.Services.EquipaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +30,7 @@ public class EquipaController {
     public String editTrain(@RequestBody Equipa equipaNewInfo){
         return teamService.changeInfoTeam(equipaNewInfo);
     }
+
     @DeleteMapping
     public String deleteTrain(@RequestBody Equipa equipaDelete){
         return teamService.deleteTeam(equipaDelete);

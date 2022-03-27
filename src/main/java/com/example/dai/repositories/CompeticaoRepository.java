@@ -1,4 +1,4 @@
-package com.example.dai.Repositories;
+package com.example.dai.repositories;
 
 public class CompeticaoRepository {
 }

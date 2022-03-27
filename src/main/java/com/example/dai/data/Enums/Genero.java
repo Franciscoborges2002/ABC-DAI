@@ -1,4 +1,4 @@
-package com.example.dai.Data.Enums;
+package com.example.dai.data.Enums;
 
 public enum Genero {
     MASCULINO,

@@ -1,6 +1,6 @@
 package com.example.dai.Controllers;
 
-import com.example.dai.Data.LoginRequest;
+import com.example.dai.data.LoginRequest;
 import com.example.dai.Services.AutenticacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

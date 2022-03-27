@@ -4,7 +4,7 @@ package com.example.dai.Controllers;
 * Função para receber uma nova competições onde o ABC vai participar
 * */
 
-import com.example.dai.Data.Class.Competicao;
+import com.example.dai.data.Class.Competicao;
 import com.example.dai.Services.CompeticaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

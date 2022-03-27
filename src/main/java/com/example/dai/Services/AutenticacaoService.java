@@ -1,7 +1,7 @@
 package com.example.dai.Services;
 
-import com.example.dai.Data.Class.Utilizador;
-import com.example.dai.Data.LoginRequest;
+import com.example.dai.data.Class.Utilizador;
+import com.example.dai.data.LoginRequest;
 import org.springframework.stereotype.Service;
 
 import static com.example.dai.Services.UtilizadorService.usersRepositorie;

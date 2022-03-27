@@ -1,11 +1,11 @@
 package com.example.dai.Services;
 
-import com.example.dai.Data.Class.Utilizador;
-import com.example.dai.Data.SignUpForm;
-import com.example.dai.Repositories.ExercicioRepository;
-import com.example.dai.Repositories.EquipaRepository;
-import com.example.dai.Repositories.TreinoRepository;
-import com.example.dai.Repositories.UtilizadorRepository;
+import com.example.dai.data.Class.Utilizador;
+import com.example.dai.data.SignUpForm;
+import com.example.dai.repositories.ExercicioRepository;
+import com.example.dai.repositories.EquipaRepository;
+import com.example.dai.repositories.TreinoRepository;
+import com.example.dai.repositories.UtilizadorRepository;
 import org.springframework.stereotype.Service;
 
 @Service

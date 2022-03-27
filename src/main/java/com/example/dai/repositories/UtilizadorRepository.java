@@ -1,9 +1,9 @@
-package com.example.dai.Repositories;
+package com.example.dai.repositories;
 
-import com.example.dai.Data.Class.Atleta;
-import com.example.dai.Data.Class.Diretor;
-import com.example.dai.Data.Class.Treinador;
-import com.example.dai.Data.Class.Utilizador;
+import com.example.dai.data.Class.Atleta;
+import com.example.dai.data.Class.Diretor;
+import com.example.dai.data.Class.Treinador;
+import com.example.dai.data.Class.Utilizador;
 
 import java.util.HashMap;
 

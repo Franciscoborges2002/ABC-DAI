@@ -1,6 +1,6 @@
-package com.example.dai.Data.Class;
+package com.example.dai.data.Class;
 
-import com.example.dai.Data.Enums.Categoria;
+import com.example.dai.data.Enums.Categoria;
 
 public class Exercicio{
     private int idExercicio;

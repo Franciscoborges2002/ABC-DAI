@@ -1,6 +1,6 @@
-package com.example.dai.Repositories;
+package com.example.dai.repositories;
 
-import com.example.dai.Data.Class.Equipa;
+import com.example.dai.data.Class.Equipa;
 
 import java.util.HashMap;
 

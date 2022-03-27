@@ -1,6 +1,6 @@
 package com.example.dai.Controllers;
 
-import com.example.dai.Data.Class.Treino;
+import com.example.dai.data.Class.Treino;
 import com.example.dai.Services.TreinoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

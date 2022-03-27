@@ -2,7 +2,7 @@ package com.example.dai.Services;
 
 
 import org.springframework.stereotype.Service;
-import com.example.dai.Data.Class.Equipa;
+import com.example.dai.data.Class.Equipa;
 
 import static com.example.dai.Services.UtilizadorService.teamRepositorie;
 

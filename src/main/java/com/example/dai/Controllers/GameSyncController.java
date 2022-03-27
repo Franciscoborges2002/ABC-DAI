@@ -1,6 +1,6 @@
 package com.example.dai.Controllers;
 
-import com.example.dai.Data.RawStatistics;
+import com.example.dai.data.RawStatistics;
 import com.example.dai.Services.GameSyncService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

@@ -1,6 +1,6 @@
-package com.example.dai.Repositories;
+package com.example.dai.repositories;
 
-import com.example.dai.Data.Class.Treino;
+import com.example.dai.data.Class.Treino;
 
 import java.time.LocalDate;
 import java.util.HashMap;

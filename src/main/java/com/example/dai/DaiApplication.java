@@ -1,17 +1,14 @@
 package com.example.dai;
 
-import com.jcraft.jsch.ChannelExec;
-import com.jcraft.jsch.JSch;
-import com.jcraft.jsch.Session;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.io.ByteArrayOutputStream;
+import java.sql.*;
 
 @SpringBootApplication()
 public class DaiApplication {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
 
         SpringApplication.run(DaiApplication.class, args);
     }

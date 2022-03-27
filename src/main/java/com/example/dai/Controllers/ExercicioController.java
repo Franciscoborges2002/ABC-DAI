@@ -1,6 +1,6 @@
 package com.example.dai.Controllers;
 
-import com.example.dai.Data.Class.Exercicio;
+import com.example.dai.data.Class.Exercicio;
 import com.example.dai.Services.ExercicioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

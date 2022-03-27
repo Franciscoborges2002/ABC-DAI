@@ -1,6 +1,6 @@
 package com.example.dai.Services;
 
-import com.example.dai.Data.RawStatistics;
+import com.example.dai.data.RawStatistics;
 
 public class GameSyncService {
 
