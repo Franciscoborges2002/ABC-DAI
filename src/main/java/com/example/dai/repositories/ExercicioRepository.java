@@ -1,32 +1,12 @@
 package com.example.dai.repositories;
 
-import com.example.dai.data.Class.Exercicio;
+import com.example.dai.data.classes.Exercicio;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.HashMap;
-
-public class ExercicioRepository {
-    HashMap<Integer, Exercicio> exercises = new HashMap();
-
-    public HashMap<Integer, Exercicio> getExercises(){return exercises;}
-
-    public void setExercises(HashMap<Integer, Exercicio> exercises){ this.exercises = exercises;}
-
-    public String addExercise(Exercicio exercicio){
-        if(exercises.containsValue(exercicio)){
-            return "Exercicio já adicionado";
-        }else{
-            exercises.put(exercicio.getIdExercicio(), exercicio);
-            return "Exercicio adicionado";
-        }
-    }
-
-    public String removeExercise(Exercicio exercicio){
-        if(exercises.containsValue(exercicio)){
-            exercises.remove(exercicio.getIdExercicio(), exercicio);
-            return "O Exercicio foi removido com sucesso";
-        }else{
-            return "O Exercicio não foi encontrado";
-        }
-    }
-
+/*
+ * This interface is responsible for data acess
+ * */
+@Repository
+public interface ExercicioRepository extends JpaRepository<Exercicio, Long> {
 }
