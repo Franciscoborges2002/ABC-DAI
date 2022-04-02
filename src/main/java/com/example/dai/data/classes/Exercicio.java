@@ -22,6 +22,7 @@ public class Exercicio{
     private Categoria categoriaExercicio;
 
     public Exercicio() {
+
     }
 
     public String getNomeExercicio() {

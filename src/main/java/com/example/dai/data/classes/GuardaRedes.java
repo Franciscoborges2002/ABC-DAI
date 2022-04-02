@@ -14,7 +14,7 @@ public class GuardaRedes extends Atleta{
                 strategy = GenerationType.SEQUENCE,
                 generator = "guardaredes_sequence"
         )
-        private Long idGuardaRedes;
+        private long idGuardaRedes;
         private long golosSofridos;
         private long numeroDefesas;
 

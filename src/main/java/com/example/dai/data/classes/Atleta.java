@@ -15,14 +15,13 @@ public class Atleta extends Utilizador{
             strategy = GenerationType.SEQUENCE,
             generator = "atleta_sequence"
     )
-    private Long idAtleta;
+    private long idAtleta;
     private String cipa;
     private int numeroCamisola;
     private long numeroParticipacaoJogos;
     private long numeroParticipacaoTreinos;
     private long golos;
     private long assistencias;
-    private long golosSofridos;
     //private long
 
 
@@ -36,6 +35,14 @@ public class Atleta extends Utilizador{
     public Atleta(String nomeUtilizador, String password, String cipa) {
         super(nomeUtilizador, password);
         this.cipa = cipa;
+    }
+
+    public long getIdAtleta() {
+        return idAtleta;
+    }
+
+    public void setIdAtleta(long idAtleta) {
+        this.idAtleta = idAtleta;
     }
 
     public String getCipa() {
@@ -62,20 +69,20 @@ public class Atleta extends Utilizador{
         this.numeroParticipacaoJogos = numeroParticipacaoJogos;
     }
 
-    public long getNumeroParticipacaoTreinos() {
-        return numeroParticipacaoTreinos;
-    }
-
-    public void setNumeroParticipacaoTreinos(long numeroParticipacaoTreinos) {
-        this.numeroParticipacaoTreinos = numeroParticipacaoTreinos;
-    }
-
     public long getGolos() {
         return golos;
     }
 
     public void setGolos(long golos) {
         this.golos = golos;
+    }
+
+    public long getNumeroParticipacaoTreinos() {
+        return numeroParticipacaoTreinos;
+    }
+
+    public void setNumeroParticipacaoTreinos(long numeroParticipacaoTreinos) {
+        this.numeroParticipacaoTreinos = numeroParticipacaoTreinos;
     }
 
     public long getAssistencias() {
@@ -86,21 +93,13 @@ public class Atleta extends Utilizador{
         this.assistencias = assistencias;
     }
 
-    public long getGolosSofridos() {
-        return golosSofridos;
-    }
-
-    public void setGolosSofridos(long golosSofridos) {
-        this.golosSofridos = golosSofridos;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Atleta atleta = (Atleta) o;
-        return numeroCamisola == atleta.numeroCamisola && numeroParticipacaoJogos == atleta.numeroParticipacaoJogos && numeroParticipacaoTreinos == atleta.numeroParticipacaoTreinos && golos == atleta.golos && assistencias == atleta.assistencias && golosSofridos == atleta.golosSofridos && Objects.equals(cipa, atleta.cipa);
+        return numeroCamisola == atleta.numeroCamisola && numeroParticipacaoJogos == atleta.numeroParticipacaoJogos && numeroParticipacaoTreinos == atleta.numeroParticipacaoTreinos && golos == atleta.golos && assistencias == atleta.assistencias &&  Objects.equals(cipa, atleta.cipa);
     }
 
     @Override
@@ -110,9 +109,7 @@ public class Atleta extends Utilizador{
                 ", numeroCamisola=" + numeroCamisola +
                 ", numeroParticipacaoJogos=" + numeroParticipacaoJogos +
                 ", numeroParticipacaoTreinos=" + numeroParticipacaoTreinos +
-                ", golos=" + golos +
                 ", assistencias=" + assistencias +
-                ", golosSofridos=" + golosSofridos +
                 '}';
     }
 }

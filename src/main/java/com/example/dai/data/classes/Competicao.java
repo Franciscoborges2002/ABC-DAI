@@ -1,8 +1,11 @@
 package com.example.dai.data.classes;
 
+import com.example.dai.data.enums.Escalao;
+import com.example.dai.data.enums.Genero;
+
 import javax.persistence.*;
 
-//Função para registar uma nova competição, url. o resto vamos buscar ao website da federação;
+//Função para registar uma nova competição
 @Entity
 @Table
 public class Competicao {
@@ -17,13 +20,21 @@ public class Competicao {
             generator = "competicao_sequence"
     )
     private Long idCompeticao;
+    private String urlFederacao;
     private String Nome;
+    private String epoca;
+    private Escalao escalao;
+    private Genero genero;
+    private int numJornadas;
 
-    public String getURL() {
-        return Nome;
+    public Competicao() {
     }
 
-    public void setURL(String URL) {
-        this.Nome = URL;
+    public Competicao(String nome, String epoca, Escalao escalao, Genero genero, int numJornadas) {
+        Nome = nome;
+        this.epoca = epoca;
+        this.escalao = escalao;
+        this.genero = genero;
+        this.numJornadas = numJornadas;
     }
 }

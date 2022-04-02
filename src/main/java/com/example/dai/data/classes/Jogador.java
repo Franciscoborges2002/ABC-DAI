@@ -14,5 +14,13 @@ public class Jogador extends Atleta{
             strategy = GenerationType.SEQUENCE,
             generator = "jogador_sequence"
     )
-    private Long idJogador;
+    private long idJogador;//Mudar depois
+
+    public long getIdJogador() {
+        return idJogador;
+    }
+
+    public void setIdJogador(long idJogador) {
+        this.idJogador = idJogador;
+    }
 }

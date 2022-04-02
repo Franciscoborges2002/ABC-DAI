@@ -6,6 +6,7 @@ import com.example.dai.services.UtilizadorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -13,26 +14,33 @@ import java.util.List;
 @RequestMapping(value="/api/v1/user")
 public class UtilizadorController {
 
-    private final UtilizadorService usersService;
+    private final UtilizadorService utilizadorService;
 
     @Autowired
     public UtilizadorController(UtilizadorService listUsersService) {
-        this.usersService = listUsersService;
+        this.utilizadorService = listUsersService;
     }
 
     @GetMapping
-    public List<Utilizador> listAllUsers(){
-        return usersService.list();
+    public List<Utilizador> listarUtilizadores(){
+        return utilizadorService.listarUtilizadores();
     }
 
-    /*@PostMapping
-    public String createUser(@RequestBody UserAddModel signUpForm){return usersService.createUser(signUpForm); }
+    @PostMapping
+    public String criarUtilizador(@RequestBody UserAddModel signUpForm){return utilizadorService.criarUtilizador(signUpForm); }
 
-    @DeleteMapping
-    public String deleteUser(@RequestBody Utilizador utilizadorRemover) {return usersService.removeUser(utilizadorRemover); }
+    @DeleteMapping(path = "{idUtilizador}")
+    public String eliminarUtilizador(@PathVariable("idUtilizador") Long idUtilizador) {return utilizadorService.removerUtilizador(idUtilizador); }
 
-    @PutMapping
-    public String editUser(@RequestBody Utilizador utilizadorEditar) {return usersService.changeInfoUser(utilizadorEditar);}
-*/
+    @PutMapping(path = "{idUtilizador}")
+    public String editarUtilizador(
+            @PathVariable Long idUtilizador,
+            @RequestParam(required = false) String nomeCompleto,
+            @RequestParam(required = false) String email,
+            @RequestParam(required = false) String password,
+            @RequestParam(required = false) String numeroTelemovel,
+            @RequestParam(required = false) LocalDate dataNascimento
+                           ) {return utilizadorService.mudarInformacaoUtilizador(idUtilizador, nomeCompleto, email, password, numeroTelemovel, dataNascimento);}
+
 
 }
