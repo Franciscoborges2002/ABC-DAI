@@ -10,6 +10,8 @@ import com.example.dai.data.enums.Genero;
 import com.example.dai.model.CompeticaoAddModel;
 import com.example.dai.services.CompeticaoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,8 +26,9 @@ public class CompeticaoController {
     public CompeticaoController(CompeticaoService competitionService){this.competicaoService = competitionService;}
 
     @PostMapping
-    public String newCompetition(@RequestBody CompeticaoAddModel novaCompetition){
-        return competicaoService.adicionarCompeticao(novaCompetition);
+    public ResponseEntity<String> newCompetition(@RequestBody CompeticaoAddModel novaCompetition){
+            competicaoService.adicionarCompeticao(novaCompetition);
+            return ResponseEntity.status(HttpStatus.CREATED).body("Competição criada!");
     }
 
     @GetMapping

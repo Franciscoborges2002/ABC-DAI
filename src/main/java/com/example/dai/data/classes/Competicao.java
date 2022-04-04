@@ -37,4 +37,60 @@ public class Competicao {
         this.genero = genero;
         this.numJornadas = numJornadas;
     }
+
+    public Long getIdCompeticao() {
+        return idCompeticao;
+    }
+
+    public void setIdCompeticao(Long idCompeticao) {
+        this.idCompeticao = idCompeticao;
+    }
+
+    public String getUrlFederacao() {
+        return urlFederacao;
+    }
+
+    public void setUrlFederacao(String urlFederacao) {
+        this.urlFederacao = urlFederacao;
+    }
+
+    public String getNome() {
+        return Nome;
+    }
+
+    public void setNome(String nome) {
+        Nome = nome;
+    }
+
+    public String getEpoca() {
+        return epoca;
+    }
+
+    public void setEpoca(String epoca) {
+        this.epoca = epoca;
+    }
+
+    public Escalao getEscalao() {
+        return escalao;
+    }
+
+    public void setEscalao(Escalao escalao) {
+        this.escalao = escalao;
+    }
+
+    public Genero getGenero() {
+        return genero;
+    }
+
+    public void setGenero(Genero genero) {
+        this.genero = genero;
+    }
+
+    public int getNumJornadas() {
+        return numJornadas;
+    }
+
+    public void setNumJornadas(int numJornadas) {
+        this.numJornadas = numJornadas;
+    }
 }

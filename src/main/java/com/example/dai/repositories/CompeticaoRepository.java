@@ -18,4 +18,7 @@ public interface CompeticaoRepository extends JpaRepository<Competicao, Long> {
 
     @Query("SELECT c FROM Competicao c WHERE c.urlFederacao = ?1")
     Optional<Competicao> encontrarCompeticaoPeloUrl(String nomeCompeticao);
+
+    @Query("SELECT c FROM Competicao c WHERE c.Nome = ?1")
+    Competicao encontrarCompeticaoPeloNome2(String nomeCompeticao);
 }

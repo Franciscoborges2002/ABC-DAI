@@ -1,39 +1,53 @@
 package com.example.dai.controllers;
 
 import com.example.dai.data.classes.Equipa;
+import com.example.dai.data.enums.Escalao;
+import com.example.dai.data.enums.Genero;
+import com.example.dai.model.EquipaAddModel;
 import com.example.dai.services.EquipaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/teams")
 public class EquipaController {
 
-    private final EquipaService teamService;
+    private final EquipaService equipaService;
 
     @Autowired
     public EquipaController(EquipaService teamService) {
-        this.teamService = teamService;
+        this.equipaService = teamService;
     }
-/*
+
     @PostMapping
-    public String addTeam(@RequestBody Equipa newTeam){
-        return teamService.addTeam(newTeam);
+    public String addTeam(@RequestBody EquipaAddModel novaEquipa){
+        return equipaService.adicionarEquipa(novaEquipa);
     }
 
     @GetMapping
-    public String listTrains(){
-        return teamService.listTeams();
+    public List<Equipa> listTrains(){
+        return equipaService.listarEquipas();
     }
 
-    @PutMapping
-    public String editTrain(@RequestBody Equipa equipaNewInfo){
-        return teamService.changeInfoTeam(equipaNewInfo);
+
+    @PutMapping(path = "{idEquipa}")
+    public void editTrain(
+            @PathVariable Long idEquipa,
+            @RequestParam(required = false) String nomeEquipa,
+            @RequestParam(required = false) String moradaEquipa,
+            @RequestParam(required = false) String emailEquipa,
+            @RequestParam(required = false) String websiteEquipa,
+            @RequestParam(required = false) String recintoEquipa,
+            @RequestParam(required = false) Escalao escalaoEquipa,
+            @RequestParam(required = false) Genero generoEquipa
+    ){
+        equipaService.mudarInformacaoEquipa(idEquipa,nomeEquipa, moradaEquipa,emailEquipa, websiteEquipa,recintoEquipa, escalaoEquipa, generoEquipa);
     }
 
-    @DeleteMapping
-    public String deleteTrain(@RequestBody Equipa equipaDelete){
-        return teamService.deleteTeam(equipaDelete);
+    @DeleteMapping(path = "{idEquipa}")
+    public void deleteTrain(@PathVariable Long idEquipa){
+        equipaService.eliminarEquipa(idEquipa);
     }
-*/
 }

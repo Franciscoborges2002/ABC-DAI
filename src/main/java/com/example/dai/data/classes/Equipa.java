@@ -34,12 +34,26 @@ public class Equipa {
     public Equipa() {
     }
 
+    public Equipa(String nome, Escalao escalao, Genero genero) {
+        this.nome = nome;
+        this.escalao = escalao;
+        this.genero = genero;
+    }
+
     public Equipa(String nome, String morada, String recinto, Escalao escalao, Genero genero) {
         this.nome = nome;
         this.morada = morada;
         this.recinto = recinto;
         this.escalao = escalao;
         this.genero = genero;
+    }
+
+    public Long getIdEquipa() {
+        return idEquipa;
+    }
+
+    public void setIdEquipa(Long idEquipa) {
+        this.idEquipa = idEquipa;
     }
 
     public String getNome() {
