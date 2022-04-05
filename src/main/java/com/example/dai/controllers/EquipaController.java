@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/teams")
+@RequestMapping("/api/v1/equipa")
 public class EquipaController {
 
     private final EquipaService equipaService;
@@ -47,7 +47,7 @@ public class EquipaController {
     }
 
     @DeleteMapping(path = "{idEquipa}")
-    public void deleteTrain(@PathVariable Long idEquipa){
+    public void deleteEquipa(@PathVariable Long idEquipa){
         equipaService.eliminarEquipa(idEquipa);
     }
 }

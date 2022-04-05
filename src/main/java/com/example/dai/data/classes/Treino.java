@@ -30,10 +30,19 @@ public class Treino {
     public Treino() {
     }
 
-    public Treino(Equipa equipa, LocalDate horario, String localizacao) {
+    public Treino(String nomeTreino, Equipa equipa, LocalDate horario, String localizacao) {
+        this.nomeTreino =nomeTreino;
         this.equipa = equipa;
         this.horario = horario;
         this.localizacao = localizacao;
+    }
+
+    public Long getIdTreino() {
+        return idTreino;
+    }
+
+    public void setIdTreino(Long idTreino) {
+        this.idTreino = idTreino;
     }
 
     public String getNomeTreino() {
