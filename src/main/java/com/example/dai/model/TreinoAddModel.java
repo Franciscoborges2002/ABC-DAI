@@ -1,7 +1,7 @@
 package com.example.dai.model;
 
-import com.example.dai.data.classes.Equipa;
-import com.example.dai.data.classes.Treino;
+import com.example.dai.data.Equipa;
+import com.example.dai.data.Pavilhao;
 
 import java.time.LocalDate;
 
@@ -9,9 +9,9 @@ public class TreinoAddModel {
     private String nomeTreino;
     private Equipa equipaTreinar;
     private LocalDate horarioTreino;
-    private String pavilhao;//Alterar isto
+    private Pavilhao pavilhao;
 
-    public TreinoAddModel(String nomeTreino, Equipa equipaTreinar, LocalDate horarioTreino, String pavilhao) {
+    public TreinoAddModel(String nomeTreino, Equipa equipaTreinar, LocalDate horarioTreino, Pavilhao pavilhao) {
         this.nomeTreino = nomeTreino;
         this.equipaTreinar = equipaTreinar;
         this.horarioTreino = horarioTreino;
@@ -42,11 +42,11 @@ public class TreinoAddModel {
         this.horarioTreino = horarioTreino;
     }
 
-    public String getPavilhao() {
+    public Pavilhao getPavilhao() {
         return pavilhao;
     }
 
-    public void setPavilhao(String pavilhao) {
+    public void setPavilhao(Pavilhao pavilhao) {
         this.pavilhao = pavilhao;
     }
 }
