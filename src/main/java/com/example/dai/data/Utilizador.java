@@ -4,12 +4,14 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
 import java.util.Set;
+
 @Entity
 @Table(name="Utilizador")
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Utilizador {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long idUtilizador;
 
     @Column(name="nomeUtilizador", length = 20)
@@ -38,6 +40,15 @@ public class Utilizador {
     private Set<UtilizadorRole> role;
 
     public Utilizador() {
+    }
+
+    public Utilizador(Long idUtilizador, String nomeUtilizador) {
+        this.idUtilizador = idUtilizador;
+        this.nomeUtilizador = nomeUtilizador;
+    }
+
+    public Utilizador(String nomeUtilizador) {
+        this.nomeUtilizador = nomeUtilizador;
     }
 
     public Utilizador(String nomeUtilizador, String password) {

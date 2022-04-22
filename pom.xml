@@ -10,6 +10,8 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
+
+
     <groupId>com.example</groupId>
     <artifactId>DAI</artifactId>
     <version>0.0.1-SNAPSHOT</version>
@@ -17,7 +19,9 @@
     <description>Projecto de DAI</description>
 
     <properties>
-        <java.version>17</java.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <java.version>18.0.1</java.version>
         <repackage.classifier/>
         <spring-native.version>0.11.3</spring-native.version>
     </properties>
@@ -32,11 +36,11 @@
             <artifactId>sshd-core</artifactId>
             <version>2.5.1</version>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>org.springframework.experimental</groupId>
             <artifactId>spring-native</artifactId>
             <version>${spring-native.version}</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -50,14 +54,15 @@
             <scope>runtime</scope>
         </dependency>
         <!--<dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
+            <groupId>org.springframework.boot</groupId>ng-boot-starter-t
+            <artifactId>spriest</artifactId>
             <scope>test</scope>
         </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
@@ -116,6 +121,11 @@
                 </configuration>
             </plugin>
             <plugin>
+                <groupId>com.heroku.sdk</groupId>
+                <artifactId>heroku-maven-plugin</artifactId>
+                <version>3.0.3</version>
+            </plugin>
+            <!--<plugin>
                 <groupId>org.springframework.experimental</groupId>
                 <artifactId>spring-aot-maven-plugin</artifactId>
                 <version>${spring-native.version}</version>
@@ -133,7 +143,7 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>-->
             <plugin>
                 <groupId>org.hibernate.orm.tooling</groupId>
                 <artifactId>hibernate-enhance-maven-plugin</artifactId>

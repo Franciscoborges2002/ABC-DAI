@@ -11,4 +11,6 @@ public class Jogador extends Atleta{
     public Jogador(String nomeUtilizador, String password, String email) {
         super(nomeUtilizador, password, email);
     }
+
+
 }

@@ -1,5 +1,7 @@
 package com.example.dai.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -27,7 +29,7 @@ public class Equipa {
 
     @Enumerated(EnumType.STRING)
     private Genero genero;
-
+/*
     @OneToMany(
             mappedBy = "pavilhao",
             cascade = CascadeType.ALL
@@ -38,7 +40,7 @@ public class Equipa {
             mappedBy = "atleta",
             cascade = CascadeType.ALL
     )
-    private Set<EquipaAtleta> atletasNaEquipa;
+    private Set<EquipaAtleta> atletasNaEquipa;*/
 
     @OneToMany(
             mappedBy = "treinador",
@@ -49,6 +51,10 @@ public class Equipa {
     public Equipa() {
     }
 
+    public Equipa(String nome) {
+        this.nome = nome;
+    }
+
     public Equipa(String nome, String morada, String email, String website, Escalao escalao, Genero genero) {
         this.nome = nome;
         this.morada = morada;
@@ -57,8 +63,6 @@ public class Equipa {
         this.escalao = escalao;
         this.genero = genero;
     }
-
-
 
     public Long getIdEquipa() {
         return idEquipa;
@@ -115,7 +119,7 @@ public class Equipa {
     public void setGenero(Genero genero) {
         this.genero = genero;
     }
-
+/*
     public Set<EquipaPavilhao> getPavilhao() {
         return pavilhao;
     }
@@ -130,7 +134,7 @@ public class Equipa {
 
     public void setAtletasNaEquipa(Set<EquipaAtleta> atletasNaEquipa) {
         this.atletasNaEquipa = atletasNaEquipa;
-    }
+    }*/
 
     public Set<EquipaTreinador> getTreinadoresNaEquipa() {
         return treinadoresNaEquipa;

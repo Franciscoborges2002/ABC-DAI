@@ -1,11 +1,13 @@
 package com.example.dai.data;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
-public class Atleta extends Utilizador{
+@Table(name="Atleta")
+public class Atleta extends Utilizador {
 
     @Column(name="cipa", nullable = false, unique = true)
     private String cipa;
@@ -33,6 +35,16 @@ public class Atleta extends Utilizador{
     private Set<EquipaAtleta> equipa;
 
     public Atleta() {
+    }
+
+    public Atleta(String nomeUtilizador, String nomeCompleto, String password, Date dataNascimento, String email, String numeroTelemovel, String cipa, int numeroCamisola, long numeroParticipacaoJogos, long numeroParticipacaoTreinos, long golos, long assistencias) {
+        super(nomeUtilizador, nomeCompleto, password, dataNascimento, email, numeroTelemovel);
+        this.cipa = cipa;
+        this.numeroCamisola = numeroCamisola;
+        this.numeroParticipacaoJogos = numeroParticipacaoJogos;
+        this.numeroParticipacaoTreinos = numeroParticipacaoTreinos;
+        this.golos = golos;
+        this.assistencias = assistencias;
     }
 
     public Atleta(String password, String email) {

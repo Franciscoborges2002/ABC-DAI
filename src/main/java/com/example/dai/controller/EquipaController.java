@@ -1,6 +1,7 @@
 package com.example.dai.controller;
 
 import com.example.dai.data.Equipa;
+import com.example.dai.data.EquipaTreinador;
 import com.example.dai.data.Escalao;
 import com.example.dai.data.Genero;
 import com.example.dai.model.AtletaAddEquipaModel;
@@ -34,10 +35,10 @@ public class EquipaController {
     }
 
     @GetMapping
-    public List<Equipa> listarTreinos(){
-        return equipaService.listarEquipas();
+    public List<EquipaTreinador> listarTreinos(){
+        List<EquipaTreinador> test = equipaService.listarEquipas();
+        return test;
     }
-
 
     @PutMapping(path = "{idEquipa}")
     public ResponseEntity editarTreino(

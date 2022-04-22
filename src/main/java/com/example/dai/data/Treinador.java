@@ -5,20 +5,29 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
+@Table(name="Treinador")
 public class Treinador extends Utilizador {
 
     @OneToMany(
-            mappedBy = "Equipa",
+            mappedBy = "equipa",
             cascade = CascadeType.ALL
     )
-    private Set<EquipaTreinador> equipa;
+    private Set<EquipaTreinador> Equipa;
 
     public Treinador() {
     }
 
     public Treinador(String nomeUtilizador, String nomeCompleto, String password, Date dataNascimento, String email, String numeroTelemovel, Set<EquipaTreinador> equipa) {
         super(nomeUtilizador, nomeCompleto, password, dataNascimento, email, numeroTelemovel);
-        this.equipa = equipa;
+        this.Equipa = equipa;
+    }
+
+    public Treinador(String nomeUtilizador) {
+        super(nomeUtilizador);
+    }
+
+    public Treinador(Long idUtilizador, String nomeUtilizador) {
+        super(idUtilizador, nomeUtilizador);
     }
 
     public Treinador(String nomeUtilizador, String nomeCompleto, String password, Date dataNascimento, String email, String numeroTelemovel) {

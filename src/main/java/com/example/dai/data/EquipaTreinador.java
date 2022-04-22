@@ -1,30 +1,38 @@
 package com.example.dai.data;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name="EquipaTreinador")
-public class EquipaTreinador{
+public class EquipaTreinador {
+
     @EmbeddedId
     private EquipaTreinadorId id;
 
-    private long idEquipa;
-
-    private long idTreinador;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("idEquipa")
-    private Equipa Equipa;
+    @JoinColumn(name = "idEquipa", insertable = false, updatable = false)
+    private Equipa equipa;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("idTreinador")
+    @JoinColumn(name = "idTreinador", insertable = false, updatable = false)
     private Treinador treinador;
 
     public EquipaTreinador() {
     }
 
-    public EquipaTreinador(long idEquipa, long idTreinador) {
-        this.idEquipa = idEquipa;
-        this.idTreinador = idTreinador;
+    public EquipaTreinador(EquipaTreinadorId id) {
+        this.id = id;
+    }
+
+    public Equipa getEquipa() {
+        return equipa;
+    }
+
+    public void setEquipa(Equipa equipa) {
+        this.equipa = equipa;
     }
 
     public EquipaTreinadorId getId() {
@@ -42,5 +50,5 @@ public class EquipaTreinador{
     public void setTreinador(Treinador treinador) {
         this.treinador = treinador;
     }
-    
+
 }

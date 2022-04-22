@@ -49,7 +49,9 @@ public class EquipaService {
 
         if(!novaEquipa.getTreinadores().isEmpty()){
             for(Long idTreinador : novaEquipa.getTreinadores()){
-                EquipaTreinador equipaTreinador = new EquipaTreinador(equipaAdicionar.getIdEquipa(), idTreinador);
+                EquipaTreinador equipaTreinador = new EquipaTreinador(new EquipaTreinadorId(equipaAdicionar.getIdEquipa(), idTreinador));
+                equipaTreinador.setEquipa(equipaRepository.getById(equipaAdicionar.getIdEquipa()));
+                equipaTreinador.setTreinador(new Treinador(2L,"c"));
                 equipaTreinadorRepository.save(equipaTreinador);
             }
         }
@@ -57,7 +59,8 @@ public class EquipaService {
         return new EquipaDto("Equipa adicionada com sucesso!");
     }
 
-    public List<Equipa> listarEquipas(){return equipaRepository.findAll();}
+    public List<EquipaTreinador> listarEquipas(){return equipaTreinadorRepository.findAll();}
+
 
     public void mudarInformacaoEquipa(Long idEquipa, String nomeEquipa, String morada, String email, String website, String recinto, Escalao escalao, Genero genero) {
         Optional<Equipa> existeEquipa = equipaRepository.findById(idEquipa);

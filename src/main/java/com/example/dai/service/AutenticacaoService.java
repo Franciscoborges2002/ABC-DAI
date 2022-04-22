@@ -1,7 +1,7 @@
 package com.example.dai.service;
 
 import com.example.dai.data.Utilizador;
-import com.example.dai.model.LoginAddModel;
+import com.example.dai.model.LoginRequestModel;
 import com.example.dai.repository.UtilizadorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ public class AutenticacaoService {
         this.utilizadorRepository = utilizadorRepository;
     }
 
-    public String autenticar(LoginAddModel loginForm){
+    public String autenticar(LoginRequestModel loginForm){
         String username = loginForm.getUsername();
         String password = loginForm.getPassword();
 
