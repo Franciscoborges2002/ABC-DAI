@@ -3,6 +3,7 @@ package com.example.dai.controller;
 import com.example.dai.data.Pavilhao;
 import com.example.dai.model.PavilhaoAddModel;
 import com.example.dai.model.PavilhaoDto;
+import com.example.dai.model.PavilhaoEditModel;
 import com.example.dai.model.UtilizadorDto;
 import com.example.dai.service.PavilhaoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,11 +52,12 @@ public class PavilhaoController {
     @PutMapping(path="{idPavilhao}")
     public ResponseEntity editarPavilhao(
             @PathVariable Long idPavilhao,
-            @RequestParam(required = false) String nomePavilhao,
-            @RequestParam(required = false) String localizacao,
-            @RequestParam(required = false) int numeroDeTreinosPorHora
+            PavilhaoEditModel pavilhao
     ){
-        pavilhaoService.editarPavilhao(idPavilhao, nomePavilhao, localizacao, numeroDeTreinosPorHora);
-        return  new ResponseEntity(HttpStatus.OK);
+        pavilhao.setNomePavilhao("123");
+        pavilhao.setLocalizacao("asd");
+        pavilhao.setNumeroDeTreinosPorHora(3L);
+        pavilhaoService.editarPavilhao(idPavilhao, pavilhao);
+        return new ResponseEntity(HttpStatus.OK);
     }
 }

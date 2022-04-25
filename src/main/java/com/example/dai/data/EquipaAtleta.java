@@ -44,4 +44,20 @@ public class EquipaAtleta{
     public void setAtleta(Atleta atleta) {
         this.atleta = atleta;
     }
+
+    public long getIdAtleta() {
+        return idAtleta;
+    }
+
+    public void setIdAtleta(long idAtleta) {
+        this.idAtleta = idAtleta;
+    }
+
+    public com.example.dai.data.Equipa getEquipa() {
+        return Equipa;
+    }
+
+    public void setEquipa(com.example.dai.data.Equipa equipa) {
+        Equipa = equipa;
+    }
 }

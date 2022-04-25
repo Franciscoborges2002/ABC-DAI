@@ -9,10 +9,10 @@ import java.util.Set;
 @Table(name="Atleta")
 public class Atleta extends Utilizador {
 
-    @Column(name="cipa", nullable = false, unique = true)
+    @Column(name="cipa")
     private String cipa;
 
-    @Column(name="numeroCamisola", nullable = false)
+    @Column(name="numeroCamisola")
     private int numeroCamisola;
 
     @Transient
@@ -45,6 +45,14 @@ public class Atleta extends Utilizador {
         this.numeroParticipacaoTreinos = numeroParticipacaoTreinos;
         this.golos = golos;
         this.assistencias = assistencias;
+    }
+
+    public Atleta(String nomeUtilizador, String nomeCompleto, String password, Date dataNascimento, String email, String numeroTelemovel) {
+        super(nomeUtilizador, nomeCompleto, password, dataNascimento, email, numeroTelemovel);
+    }
+
+    public Atleta(Long idUtilizador, String nomeUtilizador) {
+        super(idUtilizador, nomeUtilizador);
     }
 
     public Atleta(String password, String email) {

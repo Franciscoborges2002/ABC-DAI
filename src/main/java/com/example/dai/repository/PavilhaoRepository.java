@@ -2,6 +2,7 @@ package com.example.dai.repository;
 
 import com.example.dai.data.Pavilhao;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -24,5 +25,9 @@ public interface PavilhaoRepository extends JpaRepository<Pavilhao, Long> {
 
     @Query("SELECT p FROM Pavilhao p WHERE p.idPavilhao = ?1")
     Pavilhao encontrarPavilhaoPeloId(Long idPavilhao);
+
+    @Modifying
+    @Query("update Pavilhao p set p.nomePavilhao = ?2, p.localizacao =?3, p.numeroDeTreinosPorHora = ?4 where p.idPavilhao = ?1")
+    void pavilhaoMudarInfo(Long id, String nomePavilhao, String localizacao, Long numeroDeTreinosPorHora);
 
 }

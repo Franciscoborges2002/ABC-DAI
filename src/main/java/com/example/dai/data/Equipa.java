@@ -1,6 +1,7 @@
 package com.example.dai.data;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -29,7 +30,7 @@ public class Equipa {
 
     @Enumerated(EnumType.STRING)
     private Genero genero;
-/*
+
     @OneToMany(
             mappedBy = "pavilhao",
             cascade = CascadeType.ALL
@@ -40,7 +41,7 @@ public class Equipa {
             mappedBy = "atleta",
             cascade = CascadeType.ALL
     )
-    private Set<EquipaAtleta> atletasNaEquipa;*/
+    private Set<EquipaAtleta> atletasNaEquipa;
 
     @OneToMany(
             mappedBy = "treinador",

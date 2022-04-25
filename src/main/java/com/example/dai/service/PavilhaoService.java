@@ -3,6 +3,7 @@ package com.example.dai.service;
 import com.example.dai.data.Pavilhao;
 import com.example.dai.model.PavilhaoAddModel;
 import com.example.dai.model.PavilhaoDto;
+import com.example.dai.model.PavilhaoEditModel;
 import com.example.dai.repository.PavilhaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,7 +41,7 @@ public class PavilhaoService {
     public PavilhaoDto adicionarPavilhao(PavilhaoAddModel novoPavilhao){
          String nomePavilhao = novoPavilhao.getNomePavilhao();
          String localizacao = novoPavilhao.getLocalizacao();
-         int numeroDeTreinosPorHora = novoPavilhao.getNumeroDeTreinosPorHora();
+            Long numeroDeTreinosPorHora = novoPavilhao.getNumeroDeTreinosPorHora();
 
         if(nomePavilhao.equals("") || localizacao.equals("") || numeroDeTreinosPorHora <=0 ){
             throw new IllegalArgumentException("Dados em falta ou inválidos");
@@ -77,33 +78,29 @@ public class PavilhaoService {
         pavilhaoRepository.deleteById(idPavilhao);
     }
 
-
     @Transactional
-    public void editarPavilhao(Long idPavilhao,String nomePavilhao, String localizacao, int numeroDeTreinosPorHora){
+    public void editarPavilhao(Long idPavilhao, PavilhaoEditModel pavilhao){
         Optional<Pavilhao> existePavilhao = Optional.of(pavilhaoRepository.getById(idPavilhao));
 
         if(existePavilhao.isEmpty()){//Se a competição não existir
             throw new IllegalStateException("Pavilhão não existe");
         }
-        //Competicao competicao = competicaoRepository.getById(idCompeticao);
-        Pavilhao pavilhao = pavilhaoRepository.getById(idPavilhao);
 
-        if(nomePavilhao != null &&
-                nomePavilhao.length() > 0 &&
-                !Objects.equals(pavilhao.getNomePavilhao(), nomePavilhao)){
-            pavilhao.setNomePavilhao(nomePavilhao);
+        Pavilhao pavilhaoObjeto = existePavilhao.get();
+
+        if(pavilhao.getNomePavilhao() != null){
+            pavilhaoObjeto.setNomePavilhao(pavilhao.getNomePavilhao());
         }
 
-        if(localizacao != null &&
-                localizacao.length() > 0 &&
-                !Objects.equals(pavilhao.getLocalizacao(), localizacao)){
-            pavilhao.setLocalizacao(localizacao);
+        if(pavilhao.getLocalizacao() != null){
+            pavilhaoObjeto.setLocalizacao(pavilhao.getLocalizacao());
         }
 
-        if(numeroDeTreinosPorHora <=0 &&
-                !Objects.equals(pavilhao.getNumeroDeTreinosPorHora(), numeroDeTreinosPorHora)){
-            pavilhao.setNumeroDeTreinosPorHora(numeroDeTreinosPorHora);
+        if(pavilhao.getNumeroDeTreinosPorHora() >0){
+            pavilhaoObjeto.setNumeroDeTreinosPorHora(pavilhao.getNumeroDeTreinosPorHora());
         }
+
+        pavilhaoRepository.pavilhaoMudarInfo(idPavilhao, pavilhao.getNomePavilhao(), pavilhao.getLocalizacao(), pavilhao.getNumeroDeTreinosPorHora());
     }
 
 

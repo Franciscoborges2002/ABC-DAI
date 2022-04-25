@@ -1,6 +1,7 @@
 package com.example.dai.data;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class GuardaRedes extends Atleta{
@@ -17,5 +18,9 @@ public class GuardaRedes extends Atleta{
 
         public GuardaRedes(String nomeUtilizador, String password, String email) {
                 super(nomeUtilizador, password, email);
+        }
+
+        public GuardaRedes(String nomeUtilizador, String nomeCompleto, String password, Date dataNascimento, String email, String numeroTelemovel) {
+                super(nomeUtilizador, nomeCompleto, password, dataNascimento, email, numeroTelemovel);
         }
 }

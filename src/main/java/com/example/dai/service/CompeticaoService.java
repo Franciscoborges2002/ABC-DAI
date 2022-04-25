@@ -84,7 +84,6 @@ public class CompeticaoService {
         competicaoRepository.deleteById(idCompeticao);
     }
 
-    @Transactional
     public void editarCompeticao(Long idCompeticao, String urlFederacao, String nomeCompeticao, String epoca, Escalao escalao, Genero genero, int numJornadas){
         Optional<Competicao> existeCompeticao = Optional.of(competicaoRepository.getById(idCompeticao));
 
@@ -94,11 +93,10 @@ public class CompeticaoService {
 
         //Ver o que está a dar erro
         //Competicao competicao = competicaoRepository.getById(idCompeticao);
-        Competicao competicao = competicaoRepository.getById(idCompeticao);
+        Competicao competicao = existeCompeticao.get();
 
         if(urlFederacao != null &&
-                urlFederacao.length() > 0 &&
-                !Objects.equals(competicao.getUrlFederacao(), urlFederacao)){
+                urlFederacao.length() > 0){
             competicao.setUrlFederacao(urlFederacao);
         }
 
@@ -109,8 +107,7 @@ public class CompeticaoService {
         }
 
         if(nomeCompeticao != null &&
-                nomeCompeticao.length() > 0 &&
-                !Objects.equals(competicao.getNome(), nomeCompeticao)){
+                nomeCompeticao.length() > 0){
             competicao.setNome(nomeCompeticao);
         }
 
@@ -124,9 +121,11 @@ public class CompeticaoService {
             competicao.setGenero(genero);
         }
 
-        if(numJornadas > 0 && !Objects.equals(competicao.getNumJornadas(), numJornadas)) {
+        if(numJornadas > 0) {
             competicao.setNumJornadas(numJornadas);
         }
+
+        competicaoRepository.save(competicao);
 
     }
 }

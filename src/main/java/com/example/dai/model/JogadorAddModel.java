@@ -34,6 +34,15 @@ public class JogadorAddModel {
         this.numeroTelemovel = numeroTelemovel;
     }
 
+    public JogadorAddModel(String nomeUtilizador, String nomeCompleto, String password, Date dataNascimento, String email, String numeroTelemovel) {
+        this.nomeUtilizador = nomeUtilizador;
+        this.nomeCompleto = nomeCompleto;
+        this.password = password;
+        this.dataNascimento = dataNascimento;
+        this.email = email;
+        this.numeroTelemovel = numeroTelemovel;
+    }
+
     public String getNomeUtilizador() {
         return nomeUtilizador;
     }

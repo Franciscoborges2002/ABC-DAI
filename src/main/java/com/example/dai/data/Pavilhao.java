@@ -17,7 +17,7 @@ public class Pavilhao {
     private String localizacao;
 
     @Column(name="numeroDeTreinosPorHora")
-    private Integer numeroDeTreinosPorHora;
+    private Long numeroDeTreinosPorHora;
 
     //Mudar Equipa
     @OneToMany(
@@ -29,7 +29,11 @@ public class Pavilhao {
     public Pavilhao() {
     }
 
-    public Pavilhao(String nomePavilhao, String localizacao, int numeroDeTreinosPorHora) {
+    public Pavilhao(Long idPavilhao) {
+        this.idPavilhao = idPavilhao;
+    }
+
+    public Pavilhao(String nomePavilhao, String localizacao, Long numeroDeTreinosPorHora) {
         this.nomePavilhao = nomePavilhao;
         this.localizacao = localizacao;
         this.numeroDeTreinosPorHora = numeroDeTreinosPorHora;
@@ -51,11 +55,11 @@ public class Pavilhao {
         this.localizacao = localizacao;
     }
 
-    public int getNumeroDeTreinosPorHora() {
+    public Long getNumeroDeTreinosPorHora() {
         return numeroDeTreinosPorHora;
     }
 
-    public void setNumeroDeTreinosPorHora(int numeroDeTreinosPorHora) {
+    public void setNumeroDeTreinosPorHora(Long numeroDeTreinosPorHora) {
         this.numeroDeTreinosPorHora = numeroDeTreinosPorHora;
     }
 

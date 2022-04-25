@@ -21,22 +21,18 @@ import java.util.Optional;
 @Service
 public class UtilizadorService {
     private final UtilizadorRepository utilizadorRepository;
-    private final TreinadorRepository treinadorRepository;
-    private final JogadorRepository jogadorRepository;
-    private final GuardaRedesRepository guardaRedesRepository;
-    private final DiretorRepository diretorRepository;
     private final DiretorService diretorService;
     private final TreinadorService treinadorService;
+    private final JogadorService jogadorService;
+    private final GuardaRedesService guardaRedesService;
 
     @Autowired
-    public UtilizadorService(UtilizadorRepository utilizadorRepository, TreinadorRepository treinadorRepository, JogadorRepository jogadorRepository, GuardaRedesRepository guardaRedesRepository, DiretorRepository diretorRepository, DiretorService diretorService, TreinadorService treinadorService) {
+    public UtilizadorService(UtilizadorRepository utilizadorRepository, DiretorService diretorService, TreinadorService treinadorService, JogadorService jogadorService, GuardaRedesService guardaRedesService) {
         this.utilizadorRepository = utilizadorRepository;
-        this.treinadorRepository = treinadorRepository;
-        this.jogadorRepository = jogadorRepository;
-        this.guardaRedesRepository = guardaRedesRepository;
-        this.diretorRepository = diretorRepository;
         this.diretorService = diretorService;
         this.treinadorService = treinadorService;
+        this.jogadorService = jogadorService;
+        this.guardaRedesService = guardaRedesService;
     }
 
     public List<Utilizador> listarUtilizadores(){
@@ -149,12 +145,10 @@ public class UtilizadorService {
                 treinadorService.criarTreinador(new TreinadorAddModel(utilizadorAdicionar.getUsername(), utilizadorAdicionar.getNomeCompleto(), utilizadorAdicionar.getPassword(), utilizadorAdicionar.getDataNascimento(), utilizadorAdicionar.getEmail(), utilizadorAdicionar.getNumeroTelemovel()));
                 break;
             case "jogador":
-                /*Jogador jogador = new JogadorAddModel(username, password, email);
-                jogadorRepository.save(jogador);*/
+                jogadorService.criarJogador(new JogadorAddModel(utilizadorAdicionar.getUsername(), utilizadorAdicionar.getNomeCompleto(), utilizadorAdicionar.getPassword(), utilizadorAdicionar.getDataNascimento(), utilizadorAdicionar.getEmail(), utilizadorAdicionar.getNumeroTelemovel()));
                 break;
             case "guarda-redes":
-                GuardaRedes guardaRedes = new GuardaRedes(username,password, email);
-                guardaRedesRepository.save(guardaRedes);
+                guardaRedesService.criarGuardaRedes(new JogadorAddModel(utilizadorAdicionar.getUsername(), utilizadorAdicionar.getNomeCompleto(), utilizadorAdicionar.getPassword(), utilizadorAdicionar.getDataNascimento(), utilizadorAdicionar.getEmail(), utilizadorAdicionar.getNumeroTelemovel()));
                 break;
             case "diretor":
                 diretorService.criarDiretor(new DiretorAddModel(utilizadorAdicionar.getUsername(), utilizadorAdicionar.getNomeCompleto(), utilizadorAdicionar.getPassword(), utilizadorAdicionar.getDataNascimento(), utilizadorAdicionar.getEmail(), utilizadorAdicionar.getNumeroTelemovel()));
@@ -163,7 +157,7 @@ public class UtilizadorService {
                 utilizadorRepository.save(utilizador);
         }
 
-        return new UtilizadorDto("Utilizador criado com sucesso!");
+        return new UtilizadorDto("Utilizador criado com sucesso!", utilizadorAdicionar.getTipoUser());
     }
 
 }

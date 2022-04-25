@@ -35,9 +35,8 @@ public class EquipaController {
     }
 
     @GetMapping
-    public List<EquipaTreinador> listarTreinos(){
-        List<EquipaTreinador> test = equipaService.listarEquipas();
-        return test;
+    public List<Equipa> listarTreinos(){
+        return equipaService.listarEquipas();
     }
 
     @PutMapping(path = "{idEquipa}")

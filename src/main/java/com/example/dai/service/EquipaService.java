@@ -36,13 +36,17 @@ public class EquipaService {
         if(!novaEquipa.getAtletas().isEmpty()){
             for(Long idAtleta : novaEquipa.getAtletas()){
                 EquipaAtleta equipaAtleta = new EquipaAtleta(equipaAdicionar.getIdEquipa(), idAtleta);
+                equipaAtleta.setEquipa(equipaRepository.getById(equipaAdicionar.getIdEquipa()));
+                equipaAtleta.setAtleta(new Atleta(idAtleta, "a"));
                 equipaAtletaRepository.save(equipaAtleta);
             }
         }
 
         if(!novaEquipa.getPavilhoes().isEmpty()){
             for(Long idPavilhao : novaEquipa.getPavilhoes()){
-                EquipaPavilhao equipaPavilhao = new EquipaPavilhao(equipaAdicionar.getIdEquipa(), idPavilhao);
+                EquipaPavilhao equipaPavilhao = new EquipaPavilhao();
+                equipaPavilhao.setEquipa(equipaRepository.getById(equipaAdicionar.getIdEquipa()));
+                equipaPavilhao.setPavilhao(new Pavilhao(idPavilhao));
                 equipaPavilhaoRepository.save(equipaPavilhao);
             }
         }
@@ -51,7 +55,7 @@ public class EquipaService {
             for(Long idTreinador : novaEquipa.getTreinadores()){
                 EquipaTreinador equipaTreinador = new EquipaTreinador(new EquipaTreinadorId(equipaAdicionar.getIdEquipa(), idTreinador));
                 equipaTreinador.setEquipa(equipaRepository.getById(equipaAdicionar.getIdEquipa()));
-                equipaTreinador.setTreinador(new Treinador(2L,"c"));
+                equipaTreinador.setTreinador(new Treinador(idTreinador, "a"));
                 equipaTreinadorRepository.save(equipaTreinador);
             }
         }
@@ -59,7 +63,7 @@ public class EquipaService {
         return new EquipaDto("Equipa adicionada com sucesso!");
     }
 
-    public List<EquipaTreinador> listarEquipas(){return equipaTreinadorRepository.findAll();}
+    public List<Equipa> listarEquipas(){return equipaRepository.findAll();}
 
 
     public void mudarInformacaoEquipa(Long idEquipa, String nomeEquipa, String morada, String email, String website, String recinto, Escalao escalao, Genero genero) {

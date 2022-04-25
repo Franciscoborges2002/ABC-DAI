@@ -1,11 +1,12 @@
 package com.example.dai.model;
 
-public class PavilhaoAddModel {
+
+public class PavilhaoEditModel {
     private String nomePavilhao;
     private String localizacao;
     private Long numeroDeTreinosPorHora;
 
-    public PavilhaoAddModel(String nomePavilhao, String localizacao, Long numeroDeTreinosPorHora) {
+    public PavilhaoEditModel(String nomePavilhao, String localizacao, Long numeroDeTreinosPorHora) {
         this.nomePavilhao = nomePavilhao;
         this.localizacao = localizacao;
         this.numeroDeTreinosPorHora = numeroDeTreinosPorHora;

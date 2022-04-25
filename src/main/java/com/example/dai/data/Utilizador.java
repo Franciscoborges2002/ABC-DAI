@@ -88,6 +88,8 @@ public class Utilizador {
         this.numeroTelemovel = numeroTelemovel;
     }
 
+
+
     public Long getIdUtilizador() {
         return idUtilizador;
     }
