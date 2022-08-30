@@ -31,7 +31,7 @@ public class PavilhaoService {
     public Pavilhao listarPavilhao(Long idPavilhao){
         Optional<Pavilhao> pavilhao= pavilhaoRepository.findById(idPavilhao);
 
-        if(pavilhao.isEmpty()){
+        if(!pavilhao.isPresent()){
             throw new IllegalStateException("Pavilhão não existe");
         }
 
@@ -47,19 +47,15 @@ public class PavilhaoService {
             throw new IllegalArgumentException("Dados em falta ou inválidos");
         }
 
-        //Verificar se já tem o nome do pavilhao e a localizacao
         Optional<Pavilhao> existeNomePavilhao = pavilhaoRepository.encontrarPavilhaoPeloNome(nomePavilhao);
 
-        //Se já existe o nome
         if(existeNomePavilhao.isPresent()){//Existe o nome do pavilhao na BD
 
             Pavilhao pavilhao = pavilhaoRepository.encontrarPavilhaoPeloNome2(nomePavilhao);
 
             if(pavilhao.getLocalizacao().equals(localizacao)){ //verificar se a epoca é igual à existente na bd
-                if(pavilhao.getNumeroDeTreinosPorHora() == numeroDeTreinosPorHora){
-                        throw new IllegalStateException("Esse pavilhão já está registado na BD");
+                throw new IllegalStateException("Esse pavilhão já está registado na BD");
 
-                }
             }
         }
 
@@ -69,10 +65,9 @@ public class PavilhaoService {
     }
 
 
-    //Só os diretores é que tem permissão para acessar
     public void removerPavilhao(Long idPavilhao){
         Optional<Pavilhao> existePavilhao = pavilhaoRepository.findById(idPavilhao);
-        if(existePavilhao.isEmpty()){
+        if(!existePavilhao.isPresent()){
             throw new IllegalStateException("Pavilhao com o id " + idPavilhao + " não existe!");
         }
         pavilhaoRepository.deleteById(idPavilhao);
@@ -82,7 +77,7 @@ public class PavilhaoService {
     public void editarPavilhao(Long idPavilhao, PavilhaoEditModel pavilhao){
         Optional<Pavilhao> existePavilhao = Optional.of(pavilhaoRepository.getById(idPavilhao));
 
-        if(existePavilhao.isEmpty()){//Se a competição não existir
+        if(!existePavilhao.isPresent()){//Se o pavilhao não existir
             throw new IllegalStateException("Pavilhão não existe");
         }
 
@@ -97,11 +92,9 @@ public class PavilhaoService {
         }
 
         if(pavilhao.getNumeroDeTreinosPorHora() >0){
-            pavilhaoObjeto.setNumeroDeTreinosPorHora(pavilhao.getNumeroDeTreinosPorHora());
+            pavilhaoObjeto.setNumeroDeTreinosPorHora(Long.valueOf(pavilhao.getNumeroDeTreinosPorHora()));
         }
 
-        pavilhaoRepository.pavilhaoMudarInfo(idPavilhao, pavilhao.getNomePavilhao(), pavilhao.getLocalizacao(), pavilhao.getNumeroDeTreinosPorHora());
+        pavilhaoRepository.pavilhaoMudarInfo(idPavilhao, pavilhao.getNomePavilhao(), pavilhao.getLocalizacao(), Long.valueOf(pavilhao.getNumeroDeTreinosPorHora()));
     }
-
-
 }

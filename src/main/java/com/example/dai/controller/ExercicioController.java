@@ -27,6 +27,9 @@ public class ExercicioController {
         return  new ResponseEntity(resposta,HttpStatus.OK);
 
     }
+
+
+    //Mudar para retornar DTO
     @GetMapping(path="{idExercicio}")
     public ResponseEntity<ExercicioDto> listarExercicio(@PathVariable Long idExercicio){
         Exercicio exercicio = exercicioService.listarExercicio(idExercicio);

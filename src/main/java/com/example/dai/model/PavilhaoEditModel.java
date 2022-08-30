@@ -4,9 +4,9 @@ package com.example.dai.model;
 public class PavilhaoEditModel {
     private String nomePavilhao;
     private String localizacao;
-    private Long numeroDeTreinosPorHora;
+    private int numeroDeTreinosPorHora;
 
-    public PavilhaoEditModel(String nomePavilhao, String localizacao, Long numeroDeTreinosPorHora) {
+    public PavilhaoEditModel(String nomePavilhao, String localizacao, int numeroDeTreinosPorHora) {
         this.nomePavilhao = nomePavilhao;
         this.localizacao = localizacao;
         this.numeroDeTreinosPorHora = numeroDeTreinosPorHora;
@@ -28,11 +28,11 @@ public class PavilhaoEditModel {
         this.localizacao = localizacao;
     }
 
-    public Long getNumeroDeTreinosPorHora() {
+    public int getNumeroDeTreinosPorHora() {
         return numeroDeTreinosPorHora;
     }
 
-    public void setNumeroDeTreinosPorHora(Long numeroDeTreinosPorHora) {
+    public void setNumeroDeTreinosPorHora(int numeroDeTreinosPorHora) {
         this.numeroDeTreinosPorHora = numeroDeTreinosPorHora;
     }
 }

@@ -2,28 +2,22 @@ package com.example.dai.data;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name="Equipa")
 public class Equipa {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEquipa;
 
     @Column(name="nome", nullable = false, unique = true)
     private String nome;
-
-    @Column(name="morada")
-    private String morada;
-
-    @Column(name="email")
-    private String email;
-
-    @Column(name="website")
-    private String website;
 
     @Enumerated(EnumType.STRING)
     private Escalao escalao;
@@ -32,16 +26,17 @@ public class Equipa {
     private Genero genero;
 
     @OneToMany(
-            mappedBy = "pavilhao",
-            cascade = CascadeType.ALL
+            mappedBy = "pavilhao"
+            //cascade = CascadeType.ALL,
     )
     private Set<EquipaPavilhao> pavilhao;
 
+    @JsonIgnoreProperties("equipa")
     @OneToMany(
-            mappedBy = "atleta",
+            mappedBy = "equipa",
             cascade = CascadeType.ALL
     )
-    private Set<EquipaAtleta> atletasNaEquipa;
+    private List<EquipaAtleta> atletasNaEquipa;
 
     @OneToMany(
             mappedBy = "treinador",
@@ -56,11 +51,8 @@ public class Equipa {
         this.nome = nome;
     }
 
-    public Equipa(String nome, String morada, String email, String website, Escalao escalao, Genero genero) {
+    public Equipa(String nome, Escalao escalao, Genero genero) {
         this.nome = nome;
-        this.morada = morada;
-        this.email = email;
-        this.website = website;
         this.escalao = escalao;
         this.genero = genero;
     }
@@ -81,30 +73,6 @@ public class Equipa {
         this.nome = nome;
     }
 
-    public String getMorada() {
-        return morada;
-    }
-
-    public void setMorada(String morada) {
-        this.morada = morada;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getWebsite() {
-        return website;
-    }
-
-    public void setWebsite(String website) {
-        this.website = website;
-    }
-
     public Escalao getEscalao() {
         return escalao;
     }
@@ -120,7 +88,7 @@ public class Equipa {
     public void setGenero(Genero genero) {
         this.genero = genero;
     }
-/*
+
     public Set<EquipaPavilhao> getPavilhao() {
         return pavilhao;
     }
@@ -129,13 +97,13 @@ public class Equipa {
         this.pavilhao = pavilhao;
     }
 
-    public Set<EquipaAtleta> getAtletasNaEquipa() {
+    public List<EquipaAtleta> getAtletasNaEquipa() {
         return atletasNaEquipa;
     }
 
-    public void setAtletasNaEquipa(Set<EquipaAtleta> atletasNaEquipa) {
+    public void setAtletasNaEquipa(List<EquipaAtleta> atletasNaEquipa) {
         this.atletasNaEquipa = atletasNaEquipa;
-    }*/
+    }
 
     public Set<EquipaTreinador> getTreinadoresNaEquipa() {
         return treinadoresNaEquipa;

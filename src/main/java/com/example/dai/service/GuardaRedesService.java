@@ -17,7 +17,7 @@ public class GuardaRedesService {
     }
 
     public void criarGuardaRedes(JogadorAddModel guardaRedesCriar){
-        GuardaRedes guardaRedes = new GuardaRedes(guardaRedesCriar.getNomeUtilizador(), guardaRedesCriar.getNomeCompleto(), guardaRedesCriar.getPassword(), guardaRedesCriar.getDataNascimento(), guardaRedesCriar.getEmail(), guardaRedesCriar.getNumeroTelemovel());
+        GuardaRedes guardaRedes = new GuardaRedes(guardaRedesCriar.getNomeUtilizador(), guardaRedesCriar.getNomeCompleto(), guardaRedesCriar.getPassword(), guardaRedesCriar.getDataNascimento(), guardaRedesCriar.getEmail(), guardaRedesCriar.getNumeroTelemovel(), "guarda-redes");
         guardaRedesRepository.save(guardaRedes);
     }
 }

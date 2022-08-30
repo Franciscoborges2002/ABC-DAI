@@ -10,7 +10,7 @@ public class Diretor extends Utilizador{
 
     }
 
-    public Diretor(String nomeUtilizador, String nomeCompleto, String password, Date dataNascimento, String email, String numeroTelemovel) {
-        super(nomeUtilizador, nomeCompleto, password, dataNascimento, email, numeroTelemovel);
+    public Diretor(String nomeUtilizador, String nomeCompleto, String password, Date dataNascimento, String email, String numeroTelemovel, String tipoUtilizador) {
+        super(nomeUtilizador, nomeCompleto, password, dataNascimento, email, numeroTelemovel, tipoUtilizador);
     }
 }

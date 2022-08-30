@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -32,11 +33,11 @@ public class ExercicioService {
     public Exercicio listarExercicio(Long idExercicio){
         Optional<Exercicio> exercicio = exercicioRepository.findById(idExercicio);
 
-        if(exercicio.isEmpty()){
+        if(!exercicio.isPresent()){
             throw new IllegalStateException("Exercicio não existe!");
         }
 
-        return exercicioRepository.encontrarExercicioPeloId(idExercicio);
+        return exercicioRepository.findByIdExercicio(idExercicio);
     }
 
     public ExercicioDto adicionarExercicio(ExercicioAddModel novoExercicio) {
@@ -49,21 +50,18 @@ public class ExercicioService {
         double duracao = novoExercicio.getDuracao();
         int repeticoes = novoExercicio.getRepeticoes();
 
-        if (nomeExercicio.equals("") || linkImagem.startsWith("https://") || linkImagem.startsWith("www") || categoria.equals(null)) {
+        System.out.println(nomeExercicio + " " + linkImagem + " " + objetivo + " " + repeticoes);
+
+        //Adicionar !linkImagem.startsWith("https://") || !linkImagem.startsWith("www") || categoria.equals(null)
+        if (nomeExercicio.equals("")) {
             throw new IllegalArgumentException("Falta algum dado");
         }
 
-        Optional<Exercicio> existeNomeExercicio = exercicioRepository.encontrarExercicioPeloNome(nomeExercicio);
+        Optional<Exercicio> existeNomeExercicio = exercicioRepository.findByNomeExercicio(nomeExercicio);
 
         if (existeNomeExercicio.isPresent()) {//Existe o nome do Exercicio na BD
-            Exercicio exercicio = exercicioRepository.encontrarExercicioPeloNome2(nomeExercicio);
-            if (exercicio.getCategoriaExercicio().equals(categoria)) { //verificar se a epoca é igual à existente na bd
-                if (exercicio.getLink().equals(linkImagem)) {
-                    if (exercicio.getNomeExercicio().equals(nomeExercicio)) {
-                        throw new IllegalStateException("Este exercico já está registrado na BD");
-                    }
-                }
-            }
+            return new ExercicioDto("Exercicio com o mesmo nome já está registado na BD");
+        }else{//Fazer verificações
         }
 
         Exercicio exercicioAdicionar = new Exercicio(nomeExercicio, categoria, descricao, linkImagem, objetivo, materialNecessario, duracao, repeticoes);
@@ -75,7 +73,7 @@ public class ExercicioService {
     public void editarExercicio(Long idExercicio, String nome, String descricao, String objetivo, String materialNecessario, String link, CategoriaTreino categoria, int repeticoes, double duracao){
         Optional<Exercicio> existeExercicio = exercicioRepository.findById(idExercicio);
 
-        if(existeExercicio.isEmpty()){
+        if(!existeExercicio.isPresent()){
             throw new IllegalStateException("Exercicio com o id " + idExercicio + " não existe");
         }
 
@@ -133,7 +131,7 @@ public class ExercicioService {
     public void removerExercicio(Long idExercicio){
         Optional<Exercicio> existeExercicio = exercicioRepository.findById(idExercicio);
 
-        if(existeExercicio.isEmpty()){
+        if(!existeExercicio.isPresent()){
             throw new IllegalStateException("Exercicio com o id " + idExercicio + " não existe!");
         }
 

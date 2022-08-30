@@ -33,6 +33,9 @@ public class Utilizador {
     @Column(name="telemovel")
     private String numeroTelemovel;
 
+    @Column(name="tipoUtilizador")
+    private String tipoUtilizador;
+
     @OneToMany(
             mappedBy="Role",
             cascade = CascadeType.ALL
@@ -65,6 +68,16 @@ public class Utilizador {
         this.numeroTelemovel = numeroTelemovel;
     }
 
+    public Utilizador(String nomeUtilizador, String nomeCompleto, String password, Date dataNascimento, String email, String numeroTelemovel, String tipoUtilizador) {
+        this.nomeUtilizador = nomeUtilizador;
+        this.nomeCompleto = nomeCompleto;
+        this.password = password;
+        this.dataNascimento = dataNascimento;
+        this.email = email;
+        this.numeroTelemovel = numeroTelemovel;
+        this.tipoUtilizador = tipoUtilizador;
+    }
+
     public Utilizador(String nomeUtilizador, String password, String email) {
         this.nomeUtilizador = nomeUtilizador;
         this.password = password;
@@ -88,7 +101,9 @@ public class Utilizador {
         this.numeroTelemovel = numeroTelemovel;
     }
 
-
+    public Utilizador(Long idUtilizador) {
+        this.idUtilizador = idUtilizador;
+    }
 
     public Long getIdUtilizador() {
         return idUtilizador;
@@ -146,28 +161,11 @@ public class Utilizador {
         this.numeroTelemovel = numeroTelemovel;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Utilizador that = (Utilizador) o;
-        return Objects.equals(nomeUtilizador, that.nomeUtilizador) && Objects.equals(nomeCompleto, that.nomeCompleto) && Objects.equals(password, that.password) && Objects.equals(dataNascimento, that.dataNascimento) && Objects.equals(email, that.email) && Objects.equals(numeroTelemovel, that.numeroTelemovel);
+    public String getTipoUtilizador() {
+        return tipoUtilizador;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(nomeUtilizador, nomeCompleto, password, dataNascimento, email, numeroTelemovel);
-    }
-
-    @Override
-    public String toString() {
-        return "Utilizador{" +
-                "nomeUtilizador='" + nomeUtilizador + '\'' +
-                ", nomeCompleto='" + nomeCompleto + '\'' +
-                ", password='" + password + '\'' +
-                ", dataNascimento=" + dataNascimento +
-                ", email='" + email + '\'' +
-                ", numeroTelemovel='" + numeroTelemovel + '\'' +
-                '}';
+    public void setTipoUtilizador(String tipoUtilizador) {
+        this.tipoUtilizador = tipoUtilizador;
     }
 }

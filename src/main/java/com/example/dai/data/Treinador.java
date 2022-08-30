@@ -30,7 +30,7 @@ public class Treinador extends Utilizador {
         super(idUtilizador, nomeUtilizador);
     }
 
-    public Treinador(String nomeUtilizador, String nomeCompleto, String password, Date dataNascimento, String email, String numeroTelemovel) {
-        super(nomeUtilizador, nomeCompleto, password, dataNascimento, email, numeroTelemovel);
+    public Treinador(String nomeUtilizador, String nomeCompleto, String password, Date dataNascimento, String email, String numeroTelemovel, String tipoUtilizador) {
+        super(nomeUtilizador, nomeCompleto, password, dataNascimento, email, numeroTelemovel, tipoUtilizador);
     }
 }

@@ -1,14 +1,12 @@
 package com.example.dai.service;
 
 import com.example.dai.data.*;
-import com.example.dai.model.AtletaAddEquipaModel;
-import com.example.dai.model.EquipaAddModel;
-import com.example.dai.model.EquipaDto;
-import com.example.dai.model.EquipaRequestModel;
+import com.example.dai.model.*;
 import com.example.dai.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.*;
 
 @Service
@@ -17,25 +15,30 @@ public class EquipaService {
     private final EquipaAtletaRepository equipaAtletaRepository;
     private final EquipaPavilhaoRepository equipaPavilhaoRepository;
     private final EquipaTreinadorRepository equipaTreinadorRepository;
+    private final JogadorRepository jogadorRepository;
+    private final GuardaRedesService guardaRedesService;
     private final UtilizadorRepository utilizadorRepository;
 
     @Autowired
-    public EquipaService(EquipaRepository equipaRepository, EquipaAtletaRepository equipaAtletaRepository, EquipaPavilhaoRepository equipaPavilhaoRepository, EquipaTreinadorRepository equipaTreinadorRepository, UtilizadorRepository utilizadorRepository) {
+    public EquipaService(EquipaRepository equipaRepository, EquipaAtletaRepository equipaAtletaRepository, EquipaPavilhaoRepository equipaPavilhaoRepository, EquipaTreinadorRepository equipaTreinadorRepository, JogadorRepository jogadorRepository, GuardaRedesService guardaRedesService, UtilizadorRepository utilizadorRepository) {
         this.equipaRepository = equipaRepository;
         this.equipaAtletaRepository = equipaAtletaRepository;
         this.equipaPavilhaoRepository = equipaPavilhaoRepository;
         this.equipaTreinadorRepository = equipaTreinadorRepository;
+        this.jogadorRepository = jogadorRepository;
+        this.guardaRedesService = guardaRedesService;
         this.utilizadorRepository = utilizadorRepository;
     }
 
     public EquipaDto adicionarEquipa(EquipaAddModel novaEquipa){
-        Equipa equipaAdicionar = new Equipa(novaEquipa.getNomeEquipa(), novaEquipa.getMorada(), novaEquipa.getEmail(), novaEquipa.getWebsite(), novaEquipa.getEscalao(), novaEquipa.getGenero());
+        Equipa equipaAdicionar = new Equipa(novaEquipa.getNomeEquipa(), novaEquipa.getEscalao(), novaEquipa.getGenero());
 
         equipaAdicionar = equipaRepository.save(equipaAdicionar);
 
         if(!novaEquipa.getAtletas().isEmpty()){
             for(Long idAtleta : novaEquipa.getAtletas()){
-                EquipaAtleta equipaAtleta = new EquipaAtleta(equipaAdicionar.getIdEquipa(), idAtleta);
+                EquipaAtleta equipaAtleta = new EquipaAtleta(new EquipaAtletaId(equipaAdicionar.getIdEquipa(), idAtleta));
+                Equipa equipa = equipaRepository.getById(equipaAdicionar.getIdEquipa());
                 equipaAtleta.setEquipa(equipaRepository.getById(equipaAdicionar.getIdEquipa()));
                 equipaAtleta.setAtleta(new Atleta(idAtleta, "a"));
                 equipaAtletaRepository.save(equipaAtleta);
@@ -44,7 +47,7 @@ public class EquipaService {
 
         if(!novaEquipa.getPavilhoes().isEmpty()){
             for(Long idPavilhao : novaEquipa.getPavilhoes()){
-                EquipaPavilhao equipaPavilhao = new EquipaPavilhao();
+                EquipaPavilhao equipaPavilhao = new EquipaPavilhao(new EquipaPavilhaoId(equipaAdicionar.getIdEquipa(), idPavilhao));
                 equipaPavilhao.setEquipa(equipaRepository.getById(equipaAdicionar.getIdEquipa()));
                 equipaPavilhao.setPavilhao(new Pavilhao(idPavilhao));
                 equipaPavilhaoRepository.save(equipaPavilhao);
@@ -63,74 +66,122 @@ public class EquipaService {
         return new EquipaDto("Equipa adicionada com sucesso!");
     }
 
-    public List<Equipa> listarEquipas(){return equipaRepository.findAll();}
+    public List<Equipa> listarEquipas(){
+        List<Equipa> equipas = equipaRepository.findAll();
+        /*List<Equipa> equipas2 = new ArrayList<>();
+        int i = 0;
 
+        for(Equipa equipa: equipas) {
+            Equipa equipaAdicionar = null;
+            if (i != equipas.size()) {
+                equipaAdicionar = new Equipa();
+                equipaAdicionar.setIdEquipa(equipa.getIdEquipa());
+                equipaAdicionar.setAtletasNaEquipa(equipa.getAtletasNaEquipa());
+                System.out.println(equipa.getAtletasNaEquipa());
+                equipaAdicionar.setEscalao(equipa.getEscalao());
+                equipaAdicionar.setTreinadoresNaEquipa(equipa.getTreinadoresNaEquipa());
+                equipaAdicionar.setNome(equipa.getNome());
+                equipaAdicionar.setGenero(equipa.getGenero());
+            }
+            i++;
+            equipas2.add(equipaAdicionar);
+        }*/
 
-    public void mudarInformacaoEquipa(Long idEquipa, String nomeEquipa, String morada, String email, String website, String recinto, Escalao escalao, Genero genero) {
+        return equipas;
+    }
+
+    /*private Atleta getEquipaAtleta(Long idEquipa){
+        return equipaAtletaRepository.findByIdEquipa(idEquipa);
+    }*/
+
+    public Equipa listarEquipa(Long idCompeticao){
+        Optional<Equipa> equipa = equipaRepository.findById(idCompeticao);
+
+        if (!equipa.isPresent()) {
+            throw new IllegalStateException("Competição não existe");
+        }
+
+        return equipa.get();
+    }
+
+    @Transactional
+    public void mudarInformacaoEquipa(Long idEquipa, EquipaEditModel equipaNovasInfos) {
         Optional<Equipa> existeEquipa = equipaRepository.findById(idEquipa);
 
-        if(existeEquipa.isEmpty()){
-            throw new IllegalStateException("Utilizador com o id "+ idEquipa + " não existe!");
+        if(!existeEquipa.isPresent()){
+            throw new IllegalStateException("Equipa com o id "+ idEquipa + " não existe!");
         }
+
+
 
         Equipa equipa = existeEquipa.get();
 
-        if(nomeEquipa != null){
-            equipa.setNome(nomeEquipa);
+        if(equipaNovasInfos.getNomeEquipa() != null){
+            equipa.setNome(equipaNovasInfos.getNomeEquipa());
         }
 
-        if(morada != null){
-            equipa.setMorada(morada);
+        if(equipaNovasInfos.getEscalao() != null){
+            equipa.setEscalao(equipaNovasInfos.getEscalao());
         }
 
-        if(email != null){
-            equipa.setEmail(email);
+        if(equipaNovasInfos.getGenero() != null){
+            equipa.setGenero(equipaNovasInfos.getGenero());
         }
 
-        if(email != null){
-            equipa.setEmail(email);
+        //Retirar os que tinha anteriormente
+        equipaTreinadorRepository.eliminarTreinadorEquipa(idEquipa);
+        equipaAtletaRepository.eliminarAtletaEquipa(idEquipa);
+        equipaPavilhaoRepository.eliminarPavilhaoEquipa(idEquipa);
+
+        //Adicionar os novos
+        if(!equipaNovasInfos.getAtletas().isEmpty()){
+            for(Long idAtleta : equipaNovasInfos.getAtletas()){
+                EquipaAtleta equipaAtleta = new EquipaAtleta(new EquipaAtletaId(equipa.getIdEquipa(), idAtleta));
+                equipaAtleta.setEquipa(equipaRepository.getById(equipa.getIdEquipa()));
+                equipaAtleta.setAtleta(new Atleta(idAtleta, "a"));
+                equipaAtletaRepository.save(equipaAtleta);
+            }
         }
 
-        if(website != null){
-            equipa.setWebsite(website);
+        if(!equipaNovasInfos.getPavilhoes().isEmpty()){
+            for(Long idPavilhao : equipaNovasInfos.getPavilhoes()){
+                EquipaPavilhao equipaPavilhao = new EquipaPavilhao(new EquipaPavilhaoId(equipa.getIdEquipa(), idPavilhao));
+                equipaPavilhao.setEquipa(equipaRepository.getById(equipa.getIdEquipa()));
+                equipaPavilhao.setPavilhao(new Pavilhao(idPavilhao));
+                equipaPavilhaoRepository.save(equipaPavilhao);
+            }
         }
 
-        if(escalao != null){
-            equipa.setEscalao(escalao);
-        }
-
-        if(genero != null){
-            equipa.setGenero(genero);
+        if(!equipaNovasInfos.getTreinadores().isEmpty()){
+            for(Long idTreinador : equipaNovasInfos.getTreinadores()){
+                EquipaTreinador equipaTreinador = new EquipaTreinador(new EquipaTreinadorId(equipa.getIdEquipa(), idTreinador));
+                equipaTreinador.setEquipa(equipaRepository.getById(equipa.getIdEquipa()));
+                equipaTreinador.setTreinador(new Treinador(idTreinador, "a"));
+                equipaTreinadorRepository.save(equipaTreinador);
+            }
         }
 
         equipaRepository.save(equipa);
 
     }
 
-        public void eliminarEquipa(Long idEquipa){
-            Optional<Equipa> existeEquipa = equipaRepository.findById(idEquipa);
+    @Transactional
+    public void eliminarEquipa(Long idEquipa){
+        Optional<Equipa> existeEquipa = equipaRepository.findById(idEquipa);
 
-            if(existeEquipa.isEmpty()){
-                throw new IllegalStateException("Equipa com o id " + idEquipa + " não existe!");
-            }
-
-            equipaRepository.deleteById(idEquipa);
+        if(!existeEquipa.isPresent()){
+            throw new IllegalStateException("Equipa com o id " + idEquipa + " não existe!");
         }
 
-        public Equipa listarEquipa(Long idCompeticao){
-            Optional<Equipa> equipa = equipaRepository.findById(idCompeticao);
+        equipaTreinadorRepository.eliminarTreinadorEquipa(idEquipa);
+        equipaAtletaRepository.eliminarAtletaEquipa(idEquipa);
+        equipaPavilhaoRepository.eliminarPavilhaoEquipa(idEquipa);
 
-            if (equipa.isEmpty()) {
-                throw new IllegalStateException("Competição não existe");
-            }
+        equipaRepository.deleteById(idEquipa);
+    }
 
-            return equipa.get();
-        }
-
-
-
-        public boolean adicionarAtleta(EquipaRequestModel equipa, AtletaAddEquipaModel atleta){
-            /*Map<Long, Atleta> atletas= equipa.getAtletasNaEquipa();
+    public boolean adicionarAtleta(EquipaRequestModel equipa, AtletaAddEquipaModel atleta){
+        /*Map<Long, Atleta> atletas= equipa.getAtletasNaEquipa();
 
             if(!existeAtletaNaEquipa(equipa, atleta)){
                 atletas.put(atleta.getIdUtilizador(), atleta);
@@ -142,7 +193,7 @@ public class EquipaService {
 
             Optional<Equipa> existeEquipa = equipaRepository.findById(equipa.getIdEquipa());
 
-            if(existeEquipa.isEmpty()){//Se a equipa não existir na BD
+            if(!existeEquipa.isPresent()){//Se a equipa não existir na BD
                 throw new IllegalStateException("Equipa não existe");
             }
 

@@ -10,7 +10,7 @@ public class Exercicio{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idExercicio;
 
-    @Column(name="nomeExercicio", length = 20, nullable = false, unique = true)
+    @Column(name="nomeExercicio", length = 250, nullable = false, unique = true)
     private String nomeExercicio;
 
     @Enumerated(EnumType.STRING)

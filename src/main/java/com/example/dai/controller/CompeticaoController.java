@@ -9,7 +9,8 @@ import com.example.dai.data.Escalao;
 import com.example.dai.data.Genero;
 import com.example.dai.model.CompeticaoAddModel;
 import com.example.dai.model.CompeticaoDto;
-import com.example.dai.model.UtilizadorDto;
+import com.example.dai.model.CompeticaoEditModel;
+import org.springframework.web.bind.annotation.RequestBody;
 import com.example.dai.service.CompeticaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -56,14 +57,9 @@ public class CompeticaoController {
     @PutMapping(path="{idCompeticao}")
     public ResponseEntity editarCompeticao(
             @PathVariable Long idCompeticao,
-            @RequestParam(required = false) String urlFederacao,
-            @RequestParam(required = false) String Nome,
-            @RequestParam(required = false) String epoca,
-            @RequestParam(required = false) Escalao escalao,
-            @RequestParam(required = false) Genero genero,
-            @RequestParam(required = false) int numJornadas
-    ){
-         competicaoService.editarCompeticao(idCompeticao, urlFederacao, Nome, epoca, escalao, genero, numJornadas);
+            @RequestBody CompeticaoEditModel competicaoEditModel
+            ){
+         competicaoService.editarCompeticao(idCompeticao, competicaoEditModel);
         return  new ResponseEntity(HttpStatus.OK);
 
     }

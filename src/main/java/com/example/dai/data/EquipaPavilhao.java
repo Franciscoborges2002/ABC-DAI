@@ -9,26 +9,26 @@ public class EquipaPavilhao {
     @EmbeddedId
     private EquipaPavilhaoId id;
 
+    /*//@Column(insertable = false, updatable = false)/*
     private long idEquipa;
 
-    private long idPavilhao;
+    private long idPavilhao;*/
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("idEquipa")
     @JoinColumn(name = "idEquipa", insertable = false, updatable = false)
-    private Equipa Equipa;
+    private Equipa equipa;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("idPavilhao")
-    @JoinColumn(name = "idTreinador", insertable = false, updatable = false)
+    @JoinColumn(name = "idPavilhao", insertable = false, updatable = false)
     private Pavilhao pavilhao;
 
     public EquipaPavilhao() {
     }
 
-    public EquipaPavilhao(com.example.dai.data.Equipa equipa, Pavilhao pavilhao) {
-        Equipa = equipa;
-        this.pavilhao = pavilhao;
+    public EquipaPavilhao(EquipaPavilhaoId id) {
+        this.id = id;
     }
 
     public EquipaPavilhaoId getId() {
@@ -47,27 +47,12 @@ public class EquipaPavilhao {
         this.pavilhao = pavilhao;
     }
 
-    public com.example.dai.data.Equipa getEquipa() {
-        return Equipa;
+    public Equipa getEquipa() {
+        return equipa;
     }
 
-    public void setEquipa(com.example.dai.data.Equipa equipa) {
-        Equipa = equipa;
+    public void setEquipa(Equipa equipa) {
+        this.equipa = equipa;
     }
 
-    public long getIdEquipa() {
-        return idEquipa;
-    }
-
-    public void setIdEquipa(long idEquipa) {
-        this.idEquipa = idEquipa;
-    }
-
-    public long getIdPavilhao() {
-        return idPavilhao;
-    }
-
-    public void setIdPavilhao(long idPavilhao) {
-        this.idPavilhao = idPavilhao;
-    }
 }

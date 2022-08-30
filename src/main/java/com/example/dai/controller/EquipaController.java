@@ -4,10 +4,7 @@ import com.example.dai.data.Equipa;
 import com.example.dai.data.EquipaTreinador;
 import com.example.dai.data.Escalao;
 import com.example.dai.data.Genero;
-import com.example.dai.model.AtletaAddEquipaModel;
-import com.example.dai.model.EquipaAddModel;
-import com.example.dai.model.EquipaDto;
-import com.example.dai.model.EquipaRequestModel;
+import com.example.dai.model.*;
 import com.example.dai.service.EquipaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,22 +32,22 @@ public class EquipaController {
     }
 
     @GetMapping
-    public List<Equipa> listarTreinos(){
+    public List<Equipa> listarEquipa(){
+        System.out.println(equipaService.listarEquipas());
         return equipaService.listarEquipas();
     }
 
+    @GetMapping(path="{idEquipa}")
+    public Equipa listarEquipa(@PathVariable Long idEquipa){
+        return equipaService.listarEquipa(idEquipa);
+    }
+
     @PutMapping(path = "{idEquipa}")
-    public ResponseEntity editarTreino(
+    public ResponseEntity editarEquipa(
             @PathVariable Long idEquipa,
-            @RequestParam(required = false) String nomeEquipa,
-            @RequestParam(required = false) String moradaEquipa,
-            @RequestParam(required = false) String emailEquipa,
-            @RequestParam(required = false) String websiteEquipa,
-            @RequestParam(required = false) String recintoEquipa,
-            @RequestParam(required = false) Escalao escalaoEquipa,
-            @RequestParam(required = false) Genero generoEquipa
-    ){
-        equipaService.mudarInformacaoEquipa(idEquipa,nomeEquipa, moradaEquipa,emailEquipa, websiteEquipa,recintoEquipa, escalaoEquipa, generoEquipa);
+            @RequestBody EquipaEditModel equipaEditModel
+            ){
+        equipaService.mudarInformacaoEquipa(idEquipa, equipaEditModel);
         return new ResponseEntity(HttpStatus.OK);
     }
 

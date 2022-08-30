@@ -13,12 +13,7 @@ import java.util.Optional;
 @Repository
 public interface ExercicioRepository extends JpaRepository<Exercicio, Long> {
 
-    @Query("SELECT e FROM Exercicio e WHERE e.nomeExercicio = ?1")
-    Optional<Exercicio> encontrarExercicioPeloNome(String nomeExercicio);
+    Optional<Exercicio> findByNomeExercicio(String nomeExercicio);
 
-    @Query("SELECT e FROM Exercicio e WHERE e.nomeExercicio = ?1")
-    Exercicio encontrarExercicioPeloNome2(String nomeExercicio);
-
-    @Query("SELECT e FROM Exercicio e WHERE e.idExercicio = ?1")
-    Exercicio encontrarExercicioPeloId(Long idExercicio);
+    Exercicio findByIdExercicio(Long idExercicio);
 }

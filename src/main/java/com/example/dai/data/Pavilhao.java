@@ -21,7 +21,7 @@ public class Pavilhao {
 
     //Mudar Equipa
     @OneToMany(
-            mappedBy = "Equipa",
+            mappedBy = "equipa",
             cascade = CascadeType.ALL
     )
     private Set<EquipaPavilhao> equipa;

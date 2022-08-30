@@ -22,37 +22,10 @@ public class EquipaAddModel {
     @Enumerated(EnumType.STRING)
     private Genero genero;
 
-    private String morada;//tirar
-    private String email;//tirar
-    private String website;//tirar
     private Set<Long> pavilhoes;
     private Set<Long> atletas;
     private Set<Long> treinadores;
 
-
-    public String getMorada() {
-        return morada;
-    }
-
-    public void setMorada(String morada) {
-        this.morada = morada;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getWebsite() {
-        return website;
-    }
-
-    public void setWebsite(String website) {
-        this.website = website;
-    }
 
     public Set<Long> getPavilhoes() {
         return pavilhoes;

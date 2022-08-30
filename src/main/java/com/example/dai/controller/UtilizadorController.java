@@ -3,18 +3,18 @@ package com.example.dai.controller;
 import com.example.dai.data.Utilizador;
 import com.example.dai.model.UtilizadorAddModel;
 import com.example.dai.model.UtilizadorDto;
+import com.example.dai.model.UtilizadorEditModel;
 import com.example.dai.service.UtilizadorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 
 
 @RestController
-@RequestMapping(value="/api/v1/user")
+@RequestMapping(value="/api/v1/utilizador")
 public class UtilizadorController {
 
     private final UtilizadorService utilizadorService;
@@ -29,10 +29,16 @@ public class UtilizadorController {
         return utilizadorService.listarUtilizadores();
     }
 
+    @GetMapping(path = "{idUtilizador}")
+    public ResponseEntity<UtilizadorDto> listarUtilizador(@PathVariable("idUtilizador") Long idUtilizador){
+        UtilizadorDto utilizadorDto = utilizadorService.listarUtilizador(idUtilizador);
+        return new ResponseEntity(new UtilizadorDto(utilizadorDto.getUtilizador()), HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<UtilizadorDto> criarUtilizador(@RequestBody UtilizadorAddModel signUpForm){
         UtilizadorDto mensagem = utilizadorService.criarUtilizador(signUpForm);
-        return new ResponseEntity(mensagem, HttpStatus.OK);
+        return new ResponseEntity(mensagem, HttpStatus.CREATED);
     }
 
     @DeleteMapping(path = "{idUtilizador}")
@@ -42,18 +48,14 @@ public class UtilizadorController {
     }
 
     @PutMapping(path = "{idUtilizador}")
-    public ResponseEntity editarUtilizador(
+    public ResponseEntity<UtilizadorDto> editarUtilizador(
             @PathVariable Long idUtilizador,
-            @RequestParam(required = false) String nomeCompleto,
-            @RequestParam(required = false) String email,
-            @RequestParam(required = false) String password,
-            @RequestParam(required = false) String numeroTelemovel,
-            @RequestParam(required = false) Date dataNascimento
-                           ) {
-        utilizadorService.mudarInformacaoUtilizador(idUtilizador, nomeCompleto, email, password, numeroTelemovel, dataNascimento);
-        return  new ResponseEntity(HttpStatus.OK);
+            @RequestBody UtilizadorEditModel utilizadorInfo
+    ) {
+        //utilizadorService.mudarInformacaoUtilizador(idUtilizador, nomeCompleto, email, password, numeroTelemovel, dataNascimento);
+        utilizadorService.mudarInformacaoUtilizador(idUtilizador, utilizadorInfo);
+        System.out.println(utilizadorInfo.getNomeCompleto());
+        return new ResponseEntity(HttpStatus.OK);
 
     }
-
-
 }

@@ -1,32 +1,36 @@
 package com.example.dai.data;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "EquipaAtleta")
 public class EquipaAtleta{
 
+
     @EmbeddedId
     private EquipaAtletaId id;
 
-    private long idEquipa;
-
-    private long idAtleta;
-
-    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonBackReference
+    @ManyToOne//(fetch = FetchType.LAZY)
     @MapsId("idEquipa")
-    private Equipa Equipa;
+    @JoinColumn(name = "id_equipa", insertable = false, updatable = false)
+    private Equipa equipa;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    //@JsonBackReference
+    @ManyToOne//(fetch = FetchType.LAZY)
     @MapsId("idAtleta")
+    @JoinColumn(name = "id_atleta", insertable = false, updatable = false)
     private Atleta atleta;
 
     public EquipaAtleta() {
     }
 
-    public EquipaAtleta(Long idEquipa, Long idAtleta) {
-        this.idEquipa = idEquipa;
-        this.idAtleta = idAtleta;
+
+
+    public EquipaAtleta(EquipaAtletaId id) {
+        this.id = id;
     }
 
     public EquipaAtletaId getId() {
@@ -37,6 +41,7 @@ public class EquipaAtleta{
         this.id = id;
     }
 
+
     public Atleta getAtleta() {
         return atleta;
     }
@@ -45,19 +50,11 @@ public class EquipaAtleta{
         this.atleta = atleta;
     }
 
-    public long getIdAtleta() {
-        return idAtleta;
+    public Equipa getEquipa() {
+        return equipa;
     }
 
-    public void setIdAtleta(long idAtleta) {
-        this.idAtleta = idAtleta;
-    }
-
-    public com.example.dai.data.Equipa getEquipa() {
-        return Equipa;
-    }
-
-    public void setEquipa(com.example.dai.data.Equipa equipa) {
-        Equipa = equipa;
+    public void setEquipa(Equipa equipa) {
+        this.equipa = equipa;
     }
 }

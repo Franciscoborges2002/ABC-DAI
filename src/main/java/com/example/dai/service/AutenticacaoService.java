@@ -16,14 +16,16 @@ public class AutenticacaoService {
     private final TreinadorRepository treinadorRepository;
     private final JogadorRepository jogadorRepository;
     private final GuardaRedesRepository guardaRedesRepository;
+    private final DataAnalystRepository dataAnalystRepository;
 
     @Autowired
-    public AutenticacaoService(UtilizadorRepository utilizadorRepository, DiretorRepository diretorRepository, TreinadorRepository treinadorRepository, JogadorRepository jogadorRepository, GuardaRedesRepository guardaRedesRepository) {
+    public AutenticacaoService(UtilizadorRepository utilizadorRepository, DiretorRepository diretorRepository, TreinadorRepository treinadorRepository, JogadorRepository jogadorRepository, GuardaRedesRepository guardaRedesRepository, DataAnalystRepository dataAnalystRepository) {
         this.utilizadorRepository = utilizadorRepository;
         this.diretorRepository = diretorRepository;
         this.treinadorRepository = treinadorRepository;
         this.jogadorRepository = jogadorRepository;
         this.guardaRedesRepository = guardaRedesRepository;
+        this.dataAnalystRepository = dataAnalystRepository;
     }
 
     public UtilizadorDto autenticar(LoginRequestModel loginForm){
@@ -42,27 +44,24 @@ public class AutenticacaoService {
 
         if(utilizadorExiste.isPresent()){
             Utilizador utilizadorVerificar = utilizadorExiste.get();
-            System.out.println("teste1");
             if(utilizadorVerificar.getPassword().equals(loginForm.getPassword())){
-                System.out.println("teste2");
                 if(diretorRepository.findById(utilizadorVerificar.getIdUtilizador()).isPresent()) {
-                    System.out.println("teste3");
-                    return new UtilizadorDto("Login efetuado com sucesso", "diretor");
+                    //String nomeUtilizador, String nomeCompleto, String password, Date dataNascimento, String email, String numeroTelemovel
+                    return new UtilizadorDto(new Utilizador(utilizadorVerificar.getNomeUtilizador(), utilizadorVerificar.getNomeCompleto(), utilizadorVerificar.getPassword(), utilizadorVerificar.getDataNascimento(), utilizadorVerificar.getEmail(), utilizadorVerificar.getNumeroTelemovel()) ,"Login efetuado com sucesso", "diretor");
                 }
                 if(treinadorRepository.findById(utilizadorVerificar.getIdUtilizador()).isPresent()){
-                    System.out.println("teste4");
-                    return new UtilizadorDto("Login efetuado com sucesso", "treinador");
+                    return new UtilizadorDto(new Utilizador(utilizadorVerificar.getNomeUtilizador(), utilizadorVerificar.getNomeCompleto(), utilizadorVerificar.getPassword(), utilizadorVerificar.getDataNascimento(), utilizadorVerificar.getEmail(), utilizadorVerificar.getNumeroTelemovel()) ,"Login efetuado com sucesso", "treinador");
                 }
                 if(jogadorRepository.findById(utilizadorVerificar.getIdUtilizador()).isPresent()){
-                    System.out.println("teste5");
-                    return new UtilizadorDto("Login efetuado com sucesso", "jogador");
+                    return new UtilizadorDto(new Utilizador(utilizadorVerificar.getNomeUtilizador(), utilizadorVerificar.getNomeCompleto(), utilizadorVerificar.getPassword(), utilizadorVerificar.getDataNascimento(), utilizadorVerificar.getEmail(), utilizadorVerificar.getNumeroTelemovel()) ,"Login efetuado com sucesso", "jogador");
                 }
                 if(guardaRedesRepository.findById(utilizadorVerificar.getIdUtilizador()).isPresent()){
-                    System.out.println("teste6");
-                    return new UtilizadorDto("Login efetuado com sucesso", "guarda-redes");
+                    return new UtilizadorDto(new Utilizador(utilizadorVerificar.getNomeUtilizador(), utilizadorVerificar.getNomeCompleto(), utilizadorVerificar.getPassword(), utilizadorVerificar.getDataNascimento(), utilizadorVerificar.getEmail(), utilizadorVerificar.getNumeroTelemovel()) ,"Login efetuado com sucesso", "guarda-redes");
+                }
+                if(dataAnalystRepository.findById(utilizadorVerificar.getIdUtilizador()).isPresent()){
+                    return new UtilizadorDto(new Utilizador(utilizadorVerificar.getNomeUtilizador(), utilizadorVerificar.getNomeCompleto(), utilizadorVerificar.getPassword(), utilizadorVerificar.getDataNascimento(), utilizadorVerificar.getEmail(), utilizadorVerificar.getNumeroTelemovel()) ,"Login efetuado com sucesso", "data-analyst");
                 }
             }else{
-                System.out.println("teste7");
                 return new UtilizadorDto( "Username ou password não estão corretos", null);
             }
         }else{

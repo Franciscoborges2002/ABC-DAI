@@ -4,12 +4,17 @@ import com.example.dai.data.Equipa;
 import com.example.dai.data.Pavilhao;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 public class TreinoAddModel {
     private String nomeTreino;
     private Equipa equipaTreinar;
     private LocalDate horarioTreino;
     private Pavilhao pavilhao;
+    private Set<Long> Exercicios;
+
+    public TreinoAddModel() {
+    }
 
     public TreinoAddModel(String nomeTreino, Equipa equipaTreinar, LocalDate horarioTreino, Pavilhao pavilhao) {
         this.nomeTreino = nomeTreino;

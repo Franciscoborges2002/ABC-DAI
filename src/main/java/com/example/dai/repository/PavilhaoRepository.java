@@ -29,5 +29,4 @@ public interface PavilhaoRepository extends JpaRepository<Pavilhao, Long> {
     @Modifying
     @Query("update Pavilhao p set p.nomePavilhao = ?2, p.localizacao =?3, p.numeroDeTreinosPorHora = ?4 where p.idPavilhao = ?1")
     void pavilhaoMudarInfo(Long id, String nomePavilhao, String localizacao, Long numeroDeTreinosPorHora);
-
 }

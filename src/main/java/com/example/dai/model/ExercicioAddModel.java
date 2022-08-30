@@ -12,6 +12,9 @@ public class ExercicioAddModel {
     private double duracao;
     private int repeticoes;
 
+    public ExercicioAddModel() {
+    }
+
     public ExercicioAddModel(String nomeExercicio, CategoriaTreino categoriaExercicio, String descricao, String link, String objetivo, String materialNecessario, double duracao, int repeticoes) {
         this.nomeExercicio = nomeExercicio;
         this.categoriaExercicio = categoriaExercicio;

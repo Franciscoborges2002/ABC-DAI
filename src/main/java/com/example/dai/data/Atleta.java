@@ -1,8 +1,15 @@
 package com.example.dai.data;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.Date;
-import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -27,17 +34,35 @@ public class Atleta extends Utilizador {
     @Column(name="assistencias")
     private long assistencias;
 
+    @Enumerated(EnumType.STRING)
+    private Escalao escalao;
+
     //Mudar Equipa
+    @JsonIgnoreProperties("atleta")
     @OneToMany(
-            mappedBy = "Equipa",
-            cascade = CascadeType.ALL
+            mappedBy = "atleta",
+            cascade = CascadeType.ALL,
+            fetch=FetchType.LAZY
     )
     private Set<EquipaAtleta> equipa;
+
+    @OneToMany(
+            mappedBy = "jogo",
+            cascade = CascadeType.ALL,
+            fetch=FetchType.LAZY
+    )
+    private Set<JogoAtleta> jogo;
+
+
 
     public Atleta() {
     }
 
-    public Atleta(String nomeUtilizador, String nomeCompleto, String password, Date dataNascimento, String email, String numeroTelemovel, String cipa, int numeroCamisola, long numeroParticipacaoJogos, long numeroParticipacaoTreinos, long golos, long assistencias) {
+    public Atleta(Long idUtilizador, String nomeUtilizador) {
+        super(idUtilizador, nomeUtilizador);
+    }
+
+    public Atleta(String nomeUtilizador, String nomeCompleto, String password, Date dataNascimento, String email, String numeroTelemovel, String cipa, int numeroCamisola, long numeroParticipacaoJogos, long numeroParticipacaoTreinos, long golos, long assistencias, Escalao escalao) {
         super(nomeUtilizador, nomeCompleto, password, dataNascimento, email, numeroTelemovel);
         this.cipa = cipa;
         this.numeroCamisola = numeroCamisola;
@@ -45,22 +70,13 @@ public class Atleta extends Utilizador {
         this.numeroParticipacaoTreinos = numeroParticipacaoTreinos;
         this.golos = golos;
         this.assistencias = assistencias;
+        this.escalao = escalaoPelaDataNascimento(dataNascimento);
+        //escalaoPelaDataNascimento(dataNascimento)
     }
 
-    public Atleta(String nomeUtilizador, String nomeCompleto, String password, Date dataNascimento, String email, String numeroTelemovel) {
-        super(nomeUtilizador, nomeCompleto, password, dataNascimento, email, numeroTelemovel);
-    }
-
-    public Atleta(Long idUtilizador, String nomeUtilizador) {
-        super(idUtilizador, nomeUtilizador);
-    }
-
-    public Atleta(String password, String email) {
-        super(password, email);
-    }
-
-    public Atleta(String nomeUtilizador, String password, String email) {
-        super( nomeUtilizador, password, email);
+    public Atleta(String nomeUtilizador, String nomeCompleto, String password, Date dataNascimento, String email, String numeroTelemovel, String tipoUtilizador) {
+        super(nomeUtilizador, nomeCompleto, password, dataNascimento, email, numeroTelemovel, tipoUtilizador);
+        this.escalao= escalaoPelaDataNascimento(dataNascimento);
     }
 
     public Set<EquipaAtleta> getEquipa() {
@@ -119,23 +135,66 @@ public class Atleta extends Utilizador {
         this.assistencias = assistencias;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        Atleta atleta = (Atleta) o;
-        return numeroCamisola == atleta.numeroCamisola && numeroParticipacaoJogos == atleta.numeroParticipacaoJogos && numeroParticipacaoTreinos == atleta.numeroParticipacaoTreinos && golos == atleta.golos && assistencias == atleta.assistencias &&  Objects.equals(cipa, atleta.cipa);
+    public Escalao getEscalao() {
+        return escalao;
     }
 
-    @Override
-    public String toString() {
-        return "Atleta{" +
-                "cipa='" + cipa + '\'' +
-                ", numeroCamisola=" + numeroCamisola +
-                ", numeroParticipacaoJogos=" + numeroParticipacaoJogos +
-                ", numeroParticipacaoTreinos=" + numeroParticipacaoTreinos +
-                ", assistencias=" + assistencias +
-                '}';
+    public void setEscalao(Escalao escalao) {
+        this.escalao = escalao;
+    }
+
+    public Escalao escalaoPelaDataNascimento(Date dataNascimento){
+        boolean jaFezAnos = true;
+        int years = Period.between(convert2LocalDate(dataNascimento), LocalDate.now()).getYears() + 1;
+
+        System.out.printf("asdihndfouihgsuahdfugoihdafoigjid" + convert2LocalDate(dataNascimento));
+/*
+        //default time zone
+        ZoneId defaultZoneId = ZoneId.systemDefault();
+
+        //creating the instance of LocalDate using the day, month, year info
+        LocalDate localDate = LocalDate.of(2004, LocalDate.now().getMonth(), LocalDate.now().getDayOfMonth());
+
+        //local date + atStartOfDay() + default time zone + toInstant() = Date
+        Date date = Date.from(localDate.atStartOfDay(defaultZoneId).toInstant());
+
+        //Displaying LocalDate and Date
+        System.out.println("LocalDate is: " + localDate);
+        System.out.println("Date is: " + date);
+
+        jaFezAnos = dataNascimento.before(date);
+
+        System.out.println("years: " + years);
+        System.out.println("Já fez anos : " + jaFezAnos);*/
+
+        if( 7 == years  || years == 8  ){
+            return Escalao.BAMBIS;
+        }
+        if(9 == years  || years == 10){
+            return Escalao.MINIS;
+        }
+        if(11 == years  || years == 12  ){
+            return Escalao.INFANTIS;
+        }
+        if(13 == years  || years == 14){
+            return Escalao.INICIADOS;
+        }
+        if(15 == years  || years == 16){
+            return Escalao.JUVENIS;
+        }
+        if(17 == years  || years == 18){
+            return Escalao.JUNIORES;
+        }
+        if(years >= 19){
+            return Escalao.SENIORES;
+        }else {
+            return null;
+        }
+    }
+
+    public LocalDate convert2LocalDate(Date dateToConvert) {
+        return dateToConvert.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
     }
 }

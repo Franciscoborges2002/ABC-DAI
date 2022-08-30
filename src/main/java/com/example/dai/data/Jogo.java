@@ -1,8 +1,10 @@
 package com.example.dai.data;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table
@@ -11,15 +13,9 @@ public class Jogo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idJogo;
 
-    @Column(name = "numeroJogo")
-    private int numeroJogo;
+    private int jornada;
 
-    @ManyToOne
-    @JoinColumn(name = "idCompeticao")
-    private Competicao competicao;
-
-    @Column(name = "epoca")
-    private String epoca;
+    private Long idCompeticao;
 
     @Column(name = "dataJogo")
     private LocalDate dataJogo;
@@ -33,56 +29,73 @@ public class Jogo {
     @Column(name = "golosEquipaVisitante")
     private int golosEquipaVisitante;
 
-    @Column(name = "estadio")
-    private String estadio;
+    @Column(name = "pavilhao")
+    private Long pavilhao;
 
-    @OneToOne
-    @JoinColumn(name = "abcIdEquipa")
-    private Equipa abc;
+    private Long idEquipaAbd;
 
-    @OneToOne
-    @JoinColumn(name = "equipaVisitanteIdEquipa")
-    private Equipa equipaVisitante;
+    private String equipaVisitante;
+
+    @OneToMany(
+            mappedBy = "atleta",
+            cascade = CascadeType.ALL
+    )
+    private Set<JogoAtleta> atletasNoJogo;
+
+    @OneToMany(
+            mappedBy = "jogada",
+            cascade = CascadeType.ALL
+    )
+    private Set<JogoJogada> jogadasNoJogo;
+
+    public Jogo(int jornada, Long idCompeticao, Long pavilhao) {
+        this.jornada = jornada;
+        this.idCompeticao = idCompeticao;
+        this.pavilhao = pavilhao;
+    }
+/*
+    public Jogo(int jornada, Long idCompeticao, LocalDate dataJogo, String horasJogo, Long pavilhao, Long abc, String equipaVisitante, Set<JogoAtleta> atletasNoJogo, Set<JogoJogada> jogadasNoJogo) {
+        this.jornada = jornada;
+        this.idCompeticao = idCompeticao;
+        this.dataJogo = dataJogo;
+        this.horasJogo = horasJogo;
+        this.pavilhao = pavilhao;
+        this.idEquipaAbd = abc;
+        this.equipaVisitante = equipaVisitante;
+        this.atletasNoJogo = atletasNoJogo;
+        this.jogadasNoJogo = jogadasNoJogo;
+    }*/
 
     public Jogo() {
     }
 
-    public Jogo(int numeroJogo, Competicao competicao, String epoca, LocalDate dataJogo, String horasJogo, int golosABC, int golosEquipaVisitante, String estadio, Equipa ABC, Equipa equipaVisitante) {
-        this.numeroJogo = numeroJogo;
-        this.competicao = competicao;
-        this.epoca = epoca;
-        this.dataJogo = dataJogo;
-        this.horasJogo = horasJogo;
-        this.golosABC = golosABC;
-        this.golosEquipaVisitante = golosEquipaVisitante;
-        this.estadio = estadio;
-        this.abc = ABC;
-        this.equipaVisitante = equipaVisitante;
+    public Jogo(int jornada, Long idCompeticao, LocalDate dataJogo, String horasJogo, Long idPavilhao, Long idEquipa, String equipaVisitante, Set<Long> atletasNoJogo, Set<Long> jogadasNoJogo) {
     }
 
-    public int getNumeroJogo() {
-        return numeroJogo;
+
+    public int getJornada() {
+        return jornada;
     }
 
-    public void setNumeroJogo(int numeroJogo) {
-        this.numeroJogo = numeroJogo;
+    public void setJornada(int jornada) {
+        this.jornada = jornada;
     }
 
+    public Long getPavilhao() {
+        return pavilhao;
+    }
+
+    public void setPavilhao(Long pavilhao) {
+        this.pavilhao = pavilhao;
+    }
+/*
     public Competicao getCompeticao() {
         return competicao;
     }
 
     public void setCompeticao(Competicao competicao) {
         this.competicao = competicao;
-    }
-
-    public String getEpoca() {
-        return epoca;
-    }
-
-    public void setEpoca(String epoca) {
-        this.epoca = epoca;
-    }
+    }*/
 
     public LocalDate getDataJogo() {
         return dataJogo;
@@ -116,51 +129,13 @@ public class Jogo {
         this.golosEquipaVisitante = golosEquipaVisitante;
     }
 
-    public String getEstadio() {
-        return estadio;
-    }
 
-    public void setEstadio(String estadio) {
-        this.estadio = estadio;
-    }
 
-    public Equipa getAbc() {
-        return abc;
-    }
-
-    public void setAbc(Equipa ABC) {
-        this.abc = ABC;
-    }
-
-    public Equipa getEquipaVisitante() {
+    public String getEquipaVisitante() {
         return equipaVisitante;
     }
 
-    public void setEquipaVisitante(Equipa equipaVisitante) {
+    public void setEquipaVisitante(String equipaVisitante) {
         this.equipaVisitante = equipaVisitante;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Jogo jogo = (Jogo) o;
-        return numeroJogo == jogo.numeroJogo && golosABC == jogo.golosABC && golosEquipaVisitante == jogo.golosEquipaVisitante && Objects.equals(competicao, jogo.competicao) && Objects.equals(epoca, jogo.epoca) && Objects.equals(dataJogo, jogo.dataJogo) && Objects.equals(horasJogo, jogo.horasJogo) && Objects.equals(estadio, jogo.estadio) && Objects.equals(abc, jogo.abc) && Objects.equals(equipaVisitante, jogo.equipaVisitante);
-    }
-
-    @Override
-    public String toString() {
-        return "Jogo{" +
-                "numeroJogo=" + numeroJogo +
-                ", competicao=" + competicao +
-                ", epoca='" + epoca + '\'' +
-                ", dataJogo=" + dataJogo +
-                ", horasJogo='" + horasJogo + '\'' +
-                ", golosABC=" + golosABC +
-                ", golosEquipaVisitante=" + golosEquipaVisitante +
-                ", estadio='" + estadio + '\'' +
-                ", ABC=" + abc +
-                ", equipaVisitante=" + equipaVisitante +
-                '}';
     }
 }

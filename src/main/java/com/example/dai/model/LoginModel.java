@@ -26,20 +26,4 @@ public class LoginModel {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    @Override
-    public String toString() {
-        return "LoginForm{" +
-                "username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        LoginModel loginForm = (LoginModel) o;
-        return Objects.equals(username, loginForm.username) && Objects.equals(password, loginForm.password);
-    }
 }

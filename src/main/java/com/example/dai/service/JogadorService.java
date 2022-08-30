@@ -16,7 +16,7 @@ public class JogadorService {
     }
 
     public void criarJogador(JogadorAddModel jogadorCriar){
-        Jogador jogador = new Jogador(jogadorCriar.getNomeUtilizador(), jogadorCriar.getNomeCompleto(), jogadorCriar.getPassword(), jogadorCriar.getDataNascimento(), jogadorCriar.getEmail(), jogadorCriar.getNumeroTelemovel());
+        Jogador jogador = new Jogador(jogadorCriar.getNomeUtilizador(), jogadorCriar.getNomeCompleto(), jogadorCriar.getPassword(), jogadorCriar.getDataNascimento(), jogadorCriar.getEmail(), jogadorCriar.getNumeroTelemovel(), "jogador");
 
         jogadorRepository.save(jogador);
     }

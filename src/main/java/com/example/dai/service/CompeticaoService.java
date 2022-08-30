@@ -5,15 +5,12 @@ import com.example.dai.data.Escalao;
 import com.example.dai.data.Genero;
 import com.example.dai.model.CompeticaoAddModel;
 import com.example.dai.model.CompeticaoDto;
+import com.example.dai.model.CompeticaoEditModel;
 import com.example.dai.repository.CompeticaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -32,7 +29,7 @@ public class CompeticaoService {
     public Competicao listarCompeticao(Long idCompeticao){
         Optional<Competicao> competicao= competicaoRepository.findById(idCompeticao);
 
-        if(competicao.isEmpty()){
+        if(!competicao.isPresent()){
             throw new IllegalStateException("Competição não existe");
         }
 
@@ -77,17 +74,17 @@ public class CompeticaoService {
     public void removerCompeticao(Long idCompeticao){
         Optional<Competicao> existeCompeticao = competicaoRepository.findById(idCompeticao);
 
-        if(existeCompeticao.isEmpty()){
+        if(!existeCompeticao.isPresent()){
             throw new IllegalStateException("Competição com o id " + idCompeticao + " não existe!");
         }
 
         competicaoRepository.deleteById(idCompeticao);
     }
 
-    public void editarCompeticao(Long idCompeticao, String urlFederacao, String nomeCompeticao, String epoca, Escalao escalao, Genero genero, int numJornadas){
+    public void editarCompeticao(Long idCompeticao, CompeticaoEditModel competicaoEditModel){
         Optional<Competicao> existeCompeticao = Optional.of(competicaoRepository.getById(idCompeticao));
 
-        if(existeCompeticao.isEmpty()){//Se a competição não existir
+        if(!existeCompeticao.isPresent()){//Se a competição não existir
             throw new IllegalStateException("Competção não existe");
         }
 
@@ -95,37 +92,34 @@ public class CompeticaoService {
         //Competicao competicao = competicaoRepository.getById(idCompeticao);
         Competicao competicao = existeCompeticao.get();
 
-        if(urlFederacao != null &&
-                urlFederacao.length() > 0){
-            competicao.setUrlFederacao(urlFederacao);
+        if(competicaoEditModel.getUrlFederacao() != null &&
+                competicaoEditModel.getUrlFederacao().length() > 0){
+            competicao.setUrlFederacao(competicaoEditModel.getUrlFederacao());
         }
 
-        if(epoca != null &&
-                epoca.length() > 0 &&
-                !Objects.equals(competicao.getEpoca(), epoca)){
-            competicao.setEpoca(epoca);
+        if(competicaoEditModel.getEpoca() != null &&
+                competicaoEditModel.getEpoca().length() > 0){
+            competicao.setEpoca(competicaoEditModel.getEpoca());
         }
 
-        if(nomeCompeticao != null &&
-                nomeCompeticao.length() > 0){
-            competicao.setNome(nomeCompeticao);
+        if(competicaoEditModel.getNomeCompeticao() != null &&
+                competicaoEditModel.getNomeCompeticao().length() > 0){
+            competicao.setNome(competicaoEditModel.getNomeCompeticao());
         }
 
-        if(escalao != null &&
-                !Objects.equals(competicao.getEscalao(), escalao)){
-            competicao.setEscalao(escalao);
+        if(competicaoEditModel.getEscalao() != null){
+            competicao.setEscalao(competicaoEditModel.getEscalao());
         }
 
-        if(genero != null &&
-                !Objects.equals(competicao.getGenero(), genero)){
-            competicao.setGenero(genero);
+        if(competicaoEditModel.getGenero() != null){
+            competicao.setGenero(competicaoEditModel.getGenero());
         }
 
-        if(numJornadas > 0) {
-            competicao.setNumJornadas(numJornadas);
+        if(competicaoEditModel.getNumeroJornadas() > 0) {
+            competicao.setNumJornadas(competicaoEditModel.getNumeroJornadas());
         }
 
-        competicaoRepository.save(competicao);
+        competicaoRepository.competicaoMudarInfo(idCompeticao, competicaoEditModel.getUrlFederacao(), competicaoEditModel.getNomeCompeticao(), competicaoEditModel.getEscalao(), competicaoEditModel.getGenero(), competicaoEditModel.getNumeroJornadas(), competicaoEditModel.getEpoca());
 
     }
 }

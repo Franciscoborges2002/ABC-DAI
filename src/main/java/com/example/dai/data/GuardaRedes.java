@@ -16,11 +16,8 @@ public class GuardaRedes extends Atleta{
         public GuardaRedes() {
         }
 
-        public GuardaRedes(String nomeUtilizador, String password, String email) {
-                super(nomeUtilizador, password, email);
-        }
 
-        public GuardaRedes(String nomeUtilizador, String nomeCompleto, String password, Date dataNascimento, String email, String numeroTelemovel) {
-                super(nomeUtilizador, nomeCompleto, password, dataNascimento, email, numeroTelemovel);
+        public GuardaRedes(String nomeUtilizador, String nomeCompleto, String password, Date dataNascimento, String email, String numeroTelemovel, String tipoUtilizador) {
+                super(nomeUtilizador, nomeCompleto, password, dataNascimento, email, numeroTelemovel, tipoUtilizador);
         }
 }

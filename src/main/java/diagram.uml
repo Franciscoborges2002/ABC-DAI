@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="39.0" y="-34.5">com</node>
+    <node x="3989.5" y="-34.5">images</node>
+    <node x="3804.0" y="-34.5">netscape</node>
+    <node x="3642.0" y="-34.5">org</node>
+    <node x="3486.0" y="-34.5">ch</node>
+    <node x="3318.5" y="-34.5">antlr</node>
+    <node x="3167.5" y="-34.5">aj</node>
+    <node x="2989.0" y="-34.5">Class50</node>
+    <node x="2698.5" y="-34.5">toolbarButtonGraphics</node>
+    <node x="2542.5" y="-34.5">sun</node>
+    <node x="2368.0" y="-34.5">lombok</node>
+    <node x="2223.5" y="-34.5">jdk</node>
+    <node x="2020.0" y="-34.5">META-INF</node>
+    <node x="1780.0" y="-34.5">groovyjarjarasm</node>
+    <node x="1620.0" y="-34.5">java</node>
+    <node x="1450.5" y="-34.5">groovy</node>
+    <node x="1276.5" y="-34.5">javax</node>
+    <node x="1011.5" y="-34.5">groovyjarjarpicocli</node>
+    <node x="713.5" y="-34.5">groovyjarjarcommonscli</node>
+    <node x="563.0" y="-34.5">net</node>
+    <node x="198.5" y="-34.5">groovyjarjarantlr</node>
+    <node x="908.6732673267327" y="-256.73267326732673">mockito-extensions</node>
+  </nodes>
+  <notes />
+  <edges />
+  <settings layout="Hierarchic Compact" zoom="0.21794171220400732" showDependencies="false" x="3091.571020166405" y="683.4398210131737" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

@@ -6,6 +6,8 @@ import com.example.dai.repository.TreinadorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TreinadorService {
     private final TreinadorRepository treinadorRepository;
@@ -16,8 +18,12 @@ public class TreinadorService {
     }
 
     public void criarTreinador(TreinadorAddModel treinadorCriar){
-        Treinador treinador = new Treinador(treinadorCriar.getNomeUtilizador(), treinadorCriar.getNomeCompleto(), treinadorCriar.getPassword(), treinadorCriar.getDataNascimento(), treinadorCriar.getEmail(), treinadorCriar.getNumeroTelemovel());
+        Treinador treinador = new Treinador(treinadorCriar.getNomeUtilizador(), treinadorCriar.getNomeCompleto(), treinadorCriar.getPassword(), treinadorCriar.getDataNascimento(), treinadorCriar.getEmail(), treinadorCriar.getNumeroTelemovel(), "treinador");
 
         treinadorRepository.save(treinador);
+    }
+
+    public List<Treinador> listarTreinadores(){
+        return treinadorRepository.findAll();
     }
 }

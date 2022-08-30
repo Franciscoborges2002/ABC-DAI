@@ -3,7 +3,7 @@ package com.example.dai.model;
 import java.util.Date;
 
 public class UtilizadorAddModel {
-    private String username;
+    private String nomeUtilizador;
     private String password;
     private String email;
     private String tipoUser;
@@ -12,7 +12,7 @@ public class UtilizadorAddModel {
     private String numeroTelemovel;
 
     public UtilizadorAddModel(String username, String password, String email, String tipoUser, String nomeCompleto, Date dataNascimento, String numeroTelemovel) {
-        this.username = username;
+        this.nomeUtilizador = username;
         this.password = password;
         this.email = email;
         this.tipoUser = tipoUser;
@@ -45,12 +45,12 @@ public class UtilizadorAddModel {
         this.numeroTelemovel = numeroTelemovel;
     }
 
-    public String getUsername() {
-        return username;
+    public String getNomeUtilizador() {
+        return nomeUtilizador;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setNomeUtilizador(String nomeUtilizador) {
+        this.nomeUtilizador = nomeUtilizador;
     }
 
     public String getPassword() {

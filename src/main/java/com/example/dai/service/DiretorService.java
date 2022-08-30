@@ -16,7 +16,7 @@ public class DiretorService {
     }
 
     public void criarDiretor(DiretorAddModel diretorCriar){
-        Diretor diretor = new Diretor(diretorCriar.getNomeUtilizador(), diretorCriar.getNomeCompleto(), diretorCriar.getPassword(), diretorCriar.getDataNascimento(), diretorCriar.getEmail(), diretorCriar.getNumeroTelemovel());
+        Diretor diretor = new Diretor(diretorCriar.getNomeUtilizador(), diretorCriar.getNomeCompleto(), diretorCriar.getPassword(), diretorCriar.getDataNascimento(), diretorCriar.getEmail(), diretorCriar.getNumeroTelemovel(), "diretor");
 
         diretorRepository.save(diretor);
     }

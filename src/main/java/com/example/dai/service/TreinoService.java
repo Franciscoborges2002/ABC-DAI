@@ -53,7 +53,7 @@ public class TreinoService {
     @Transactional
     public void mudarInformacaoTreino(Long idTreino, String nomeTreino, Equipa equipa, LocalDate horario, String localizacao) {
         Optional<Treino> existeTreino = Optional.of(treinoRepository.getById(idTreino));
-        if(existeTreino.isEmpty()){
+        if(!existeTreino.isPresent()){
             throw new IllegalStateException("O treino com o id "+ idTreino + " não existe!");
         }
         Treino treino = treinoRepository.getById(idTreino);
@@ -84,7 +84,7 @@ public class TreinoService {
 
     public void eliminarTreino(Long idTreino){
         Optional<Treino> existeTreino = treinoRepository.findById(idTreino);
-        if(existeTreino.isEmpty()){
+        if(!existeTreino.isPresent()){
             throw new IllegalStateException("Treino com o id " + idTreino + " não existe!");
         }
         treinoRepository.deleteById(idTreino);

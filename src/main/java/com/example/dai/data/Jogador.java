@@ -9,7 +9,7 @@ public class Jogador extends Atleta{
 
     }
 
-    public Jogador(String nomeUtilizador, String nomeCompleto, String password, Date dataNascimento, String email, String numeroTelemovel) {
-        super(nomeUtilizador, nomeCompleto, password, dataNascimento, email, numeroTelemovel);
+    public Jogador(String nomeUtilizador, String nomeCompleto, String password, Date dataNascimento, String email, String numeroTelemovel, String tipoUtilizador) {
+        super(nomeUtilizador, nomeCompleto, password, dataNascimento, email, numeroTelemovel, tipoUtilizador);
     }
 }
